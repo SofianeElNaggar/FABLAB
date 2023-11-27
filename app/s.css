@@ -61,6 +61,18 @@ body {
     margin-left: 10px;
 }
 
+.btn2 {
+    margin-bottom: 0px;
+    margin-left: 30px;
+}
+
+#option6{
+    display: none;
+    background-color: rgba(255, 0, 0, 0.75);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
 .titleMenu{
     text-align: center;
     margin: 0px;

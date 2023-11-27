@@ -16,7 +16,7 @@ app.get('/get-apps', (req, res) => {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
 
-    const apps = stdout.split('\r\n').filter(app => app.trim() !== '').map(app => app.trim().replace('DisplayName : ', ''));
+    const apps = stdout.split('\r\n').filter(app => app.trim() !== '').map(app => app.trim().replace('', ''));
     res.json({ applications: apps });
   });
 });
