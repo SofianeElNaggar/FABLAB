@@ -1,0 +1,120 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.blockA {
+  flex: 8;
+  background-color: #4e4c4c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-item {
+  background-color: #19191a;
+  text-align: center;
+  padding: 100px;
+  color: white;
+  border-radius: 20%;
+}
+
+.blockB {
+  flex: 2;
+  background-color: #4b4646;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+}
+
+i.fa-search {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.rectangles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rectangle {
+  width: 200px;
+  height: 40px;
+  background-color: #080808;
+  margin: 5px;
+}
+
+  
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    background-color: #f0f0f0;
+}
+
+.button-container {
+    text-align: center;
+    margin: 10px;
+    
+  flex: 2;
+  background-color: #4b4646;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.button-container button {
+    margin: 20px;
+    padding: 80px 120px;
+    font-size: 40px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+#menu {
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    display: none;
+}
