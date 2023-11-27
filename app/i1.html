@@ -35,27 +35,14 @@
                     <button id="option4" draggable="true" ondragstart="drag(event)">Volume down</button>
                 </li>
                 <li class="btn">
-                    <button id="option5" draggable="true" ondragstart="drag(event)">App 1</button>
+                    <button id="option5" draggable="true" ondragstart="drag(event)">App</button>
                 </li>
-                <li class="btn">
-                    <button id="option6" draggable="true" ondragstart="drag(event)">App 2</button>
-                </li>
-                <li class="btn">
-                    <button id="option7" draggable="true" ondragstart="drag(event)">App 3</button>
-                </li>
-                <li class="btn">
-                    <button id="option8" draggable="true" ondragstart="drag(event)">App 4</button>
-                </li>
-                <li class="btn">
-                    <button id="option9" draggable="true" ondragstart="drag(event)">App 5</button>
-                </li>
-                <li class="btn">
-                    <button id="option10" draggable="true" ondragstart="drag(event)">App 6</button>
+                <li class="btn2">
+                    <button id="option6">Fermer</button>
                 </li>
             </ul>
             
-
-            <div id="app1List" style="display: none; z-index: 1;position: absolute; max-height: 400px; overflow-y: auto; border: 1px solid #ccc; width: 55%; margin-left: 10px; border-radius: 5px; background-color: #ccc;">
+            <div id="app1List" style="display: none; z-index: 1;position: absolute; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; margin-left: 10px; border-radius: 5px; background-color: #ccc;">
             </div>
         </div>
     </div>
@@ -73,10 +60,6 @@
         const option4 = document.getElementById("option4");
         const option5 = document.getElementById("option5");
         const option6 = document.getElementById("option6");
-        const option7 = document.getElementById("option7");
-        const option8 = document.getElementById("option8");
-        const option9 = document.getElementById("option9");
-        const option10 = document.getElementById("option10");
 
         
         const app1ListDiv = document.getElementById("app1List");
@@ -101,13 +84,15 @@
 
        option5.addEventListener("click", function () {
             var appList = document.getElementById('app1List');
+            var bouton = document.getElementById('option6');
 
             if (appList.style.display === 'none') {
                 fetch('/get-apps')
                     .then(response => response.json())
                     .then(data => {
-                        appList.innerHTML = data.applications.map(app => `<div style="border: 1px solid; width: 550px; height: 15;"> <a href="#" style="font-size: 10px; margin-left: 10px;">${app}</a> </div>`).join('');
+                        appList.innerHTML = data.applications.map(app => `<div style=" display: flex; border: 1px solid; border-raduis: 10px; height: 20;"> <a href="#" style="font-size: 15px; text-decoration: none; margin-left: 10px; margin-bottom: 5px; margin-top: 5px;">${app}</a> </div>`).join('');
                         appList.style.display = 'block';
+                        bouton.style.display = 'block';
                         a = 5;
                     })
                     .catch(error => console.error('Error fetching applications:', error));
@@ -118,133 +103,31 @@
 
         option6.addEventListener("click", function () {
             var appList = document.getElementById('app1List');
+            var bouton = document.getElementById('option6');
 
-            if (appList.style.display === 'none') {
+            if (appList.style.display === 'block') {
                 fetch('/get-apps')
                     .then(response => response.json())
                     .then(data => {
-                        appList.innerHTML = data.applications.map(app => `<div style="border: 1px solid; width: 550px; height: 15;"> <a href="#" style="font-size: 10px; margin-left: 10px;">${app}</a> </div>`).join('');
-                        appList.style.display = 'block';
-                        a = 6;
+                        appList.innerHTML = data.applications.map(app => `<div style=" display: flex; border: 1px solid; border-raduis: 10px; height: 20;"> <a href="#" style="font-size: 15px; text-decoration: none; margin-left: 10px; margin-bottom: 5px; margin-top: 5px;">${app}</a> </div>`).join('');
+                        appList.style.display = 'none';
+                        bouton.style.display = 'none';
+                        a = 5;
                     })
                     .catch(error => console.error('Error fetching applications:', error));
             } else {
-                appList.style.display = 'none';
+                appList.style.display = 'block';
             }
         });
-
-        option7.addEventListener("click", function () {
-            var appList = document.getElementById('app1List');
-
-            if (appList.style.display === 'none') {
-                fetch('/get-apps')
-                    .then(response => response.json())
-                    .then(data => {
-                        appList.innerHTML = data.applications.map(app => `<div style="border: 1px solid; width: 550px; height: 15;"> <a href="#" style="font-size: 10px; margin-left: 10px;">${app}</a> </div>`).join('');
-                        appList.style.display = 'block';
-                        a = 7;
-                    })
-                    .catch(error => console.error('Error fetching applications:', error));
-            } else {
-                appList.style.display = 'none';
-            }
-        });
-
-        option8.addEventListener("click", function () {
-            var appList = document.getElementById('app1List');
-
-            if (appList.style.display === 'none') {
-                fetch('/get-apps')
-                    .then(response => response.json())
-                    .then(data => {
-                        appList.innerHTML = data.applications.map(app => `<div style="border: 1px solid; width: 550px; height: 15;"> <a href="#" style="font-size: 10px; margin-left: 10px;">${app}</a> </div>`).join('');
-                        appList.style.display = 'block';
-                        a = 8;
-                    })
-                    .catch(error => console.error('Error fetching applications:', error));
-            } else {
-                appList.style.display = 'none';
-            }
-        });
-
-        option9.addEventListener("click", function () {
-            var appList = document.getElementById('app1List');
-
-            if (appList.style.display === 'none') {
-                fetch('/get-apps')
-                    .then(response => response.json())
-                    .then(data => {
-                        appList.innerHTML = data.applications.map(app => `<div style="border: 1px solid; width: 550px; height: 15;"> <a href="#" style="font-size: 10px; margin-left: 10px;">${app}</a> </div>`).join('');
-                        appList.style.display = 'block';
-                        a = 9;
-                    })
-                    .catch(error => console.error('Error fetching applications:', error));
-            } else {
-                appList.style.display = 'none';
-            }
-        });
-
-        option10.addEventListener("click", function () {
-            var appList = document.getElementById('app1List');
-
-            if (appList.style.display === 'none') {
-                fetch('/get-apps')
-                    .then(response => response.json())
-                    .then(data => {
-                        appList.innerHTML = data.applications.map(app => `<div style="border: 1px solid; width: 550px; height: 15;"> <a href="#" style="font-size: 10px; margin-left: 10px;">${app}</a> </div>`).join('');
-                        appList.style.display = 'block';
-                        a = 10;
-                    })
-                    .catch(error => console.error('Error fetching applications:', error));
-            } else {
-                appList.style.display = 'none';
-            }
-        });
-
+        /*
         document.getElementById('app1List').addEventListener('click', function (event) {
         if(a==5){
             if (event.target.tagName === 'A') {
                 var selectedApp = event.target.textContent;
-                option5.textContent = selectedApp;
                 document.getElementById('app1List').style.display = 'none';
             }
         }
-        else if(a==6){
-            if (event.target.tagName === 'A') {
-                var selectedApp = event.target.textContent;
-                option6.textContent = selectedApp;
-                document.getElementById('app1List').style.display = 'none';
-            }
-        }
-        else if(a==7){
-            if (event.target.tagName === 'A') {
-                var selectedApp = event.target.textContent;
-                option7.textContent = selectedApp;
-                document.getElementById('app1List').style.display = 'none';
-            }
-        }
-        else if(a==8){
-            if (event.target.tagName === 'A') {
-                var selectedApp = event.target.textContent;
-                option8.textContent = selectedApp;
-                document.getElementById('app1List').style.display = 'none';
-            }
-        }
-        else if(a==9){
-            if (event.target.tagName === 'A') {
-                var selectedApp = event.target.textContent;
-                option9.textContent = selectedApp;
-                document.getElementById('app1List').style.display = 'none';
-            }
-        }
-        else if(a==10){
-            if (event.target.tagName === 'A') {
-                var selectedApp = event.target.textContent;
-                option10.textContent = selectedApp;
-                document.getElementById('app1List').style.display = 'none';
-            }
-        }
-        });
+        });*/
 
         function clic(id){
                 var butt = document.getElementById(id);
