@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { up_Volume, down_Volume } from '../Fonctionallités/son.mjs';
 import { brightnessDown, brightnessUp } from '../Fonctionallités/brightness.mjs';
 
 const app = express();
@@ -41,9 +42,17 @@ app.post('/', async (req, res) => {
 
   switch (receivedData.action){
     case "b_up":
-      console.log("b_up")
       brightnessUp();
-    break
+      break
+    case "b_down":
+      brightnessDown();
+      break
+    case "v_up":
+      up_Volume();
+      break
+    case "v_down":
+      down_Volume();
+      break
     default:
       console.log("test");
   }

@@ -98,7 +98,6 @@
 
             switch (selectedApp) {
                 case "brightness up":
-                    console.log("In switch case");
                     const jsonData = { action: 'b_up' }; // Remplacez cela par vos propres données JSON
 
                     fetch('/', {
@@ -107,6 +106,60 @@
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(jsonData)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Réponse du serveur :', data);
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de l\'envoi des données :', error);
+                        });
+                    break
+                case "brightness down":
+                    const jsonData2 = { action: 'b_down' }; // Remplacez cela par vos propres données JSON
+
+                    fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonData2)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Réponse du serveur :', data);
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de l\'envoi des données :', error);
+                        });
+                    break
+                case "Volume up":
+                    const jsonData3 = { action: 'v_up' }; // Remplacez cela par vos propres données JSON
+
+                    fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonData3)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Réponse du serveur :', data);
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de l\'envoi des données :', error);
+                        });
+                    break
+                case "Volume down":
+                    const jsonData4 = { action: 'v_down' }; // Remplacez cela par vos propres données JSON
+
+                    fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonData4)
                     })
                         .then(response => response.json())
                         .then(data => {

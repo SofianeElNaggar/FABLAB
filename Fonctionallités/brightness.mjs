@@ -2,12 +2,6 @@ import brightness from 'brightness';
 import batteryLevel from 'battery-level';
 
 batteryLevel().then(level => {
-  if (level !== null) {
-    console.log(`Le niveau de la batterie est : ${level * 100}%`);
-
-  } else {
-    console.log('Cet ordinateur n\'a pas de batterie.');
-  }
 }).catch(error => {
   console.error('Erreur lors de la récupération du niveau de la batterie :', error);
 });
@@ -34,7 +28,6 @@ export function brightnessDown() {
 // Utilisation de la fonction
 if (batteryLevel()) {
   console.log('Cet appareil est probablement un ordinateur portable.');
-  brightnessDown()
 } else {
   console.log('Cet appareil n\'est probablement pas un ordinateur portable.');
 }

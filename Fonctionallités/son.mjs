@@ -1,10 +1,4 @@
-const loudness = require('loudness');
-const readline = require('readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+import loudness from 'loudness';
 
 // Fonction pour ajuster le volume
 const adjustVolume = async (delta) => {
@@ -18,14 +12,12 @@ const adjustVolume = async (delta) => {
   }
 };
 
-function down_Volume (){
-  adjustVolume(-3);
+export function down_Volume (){
+  adjustVolume(-2);
 }
-down_Volume();
-function up_Volume (){
-  adjustVolume(3);
 
+export function up_Volume (){
+  adjustVolume(2);
 }
-up_Volume();
 
 
