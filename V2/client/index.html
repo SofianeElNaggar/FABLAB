@@ -45,6 +45,9 @@
                 <li class="btn">
                     <button id="option5" draggable="true" ondragstart="drag(event)">App</button>
                 </li>
+                <li class="btn">
+                    <button id="option7" draggable="true" ondragstart="drag(event)">new buttons</button>
+                </li>
                 <li class="btn2">
                     <button id="option6">Fermer</button>
                 </li>
@@ -70,6 +73,7 @@
         const option4 = document.getElementById("option4");
         const option5 = document.getElementById("option5");
         const option6 = document.getElementById("option6");
+        const option7 = document.getElementById("option7");
 
 
         const app1ListDiv = document.getElementById("app1List");
@@ -88,88 +92,38 @@
             const boutonID = event.dataTransfer.mozSourceNode.id;
             event.target.data = boutonID;
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
+            const text = event.target.textContent;
+
+            const jsonData = { action : "drop", button: `${event.target.id}`, text : text };
+
+            send(jsonData);
+
         }
 
         function clic(id) {
             var butt = document.getElementById(id);
             var selectedApp = butt.textContent;
 
-            console.log(selectedApp);
+            const jsonData = { action : "clic", button: `${id}` };
 
-            switch (selectedApp) {
-                case "brightness up":
-                    const jsonData = { action: 'b_up' }; // Remplacez cela par vos propres données JSON
+            send(jsonData);
+        }
 
-                    fetch('/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(jsonData)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Réponse du serveur :', data);
-                        })
-                        .catch(error => {
-                            console.error('Erreur lors de l\'envoi des données :', error);
-                        });
-                    break
-                case "brightness down":
-                    const jsonData2 = { action: 'b_down' }; // Remplacez cela par vos propres données JSON
-
-                    fetch('/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(jsonData2)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Réponse du serveur :', data);
-                        })
-                        .catch(error => {
-                            console.error('Erreur lors de l\'envoi des données :', error);
-                        });
-                    break
-                case "Volume up":
-                    const jsonData3 = { action: 'v_up' }; // Remplacez cela par vos propres données JSON
-
-                    fetch('/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(jsonData3)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Réponse du serveur :', data);
-                        })
-                        .catch(error => {
-                            console.error('Erreur lors de l\'envoi des données :', error);
-                        });
-                    break
-                case "Volume down":
-                    const jsonData4 = { action: 'v_down' }; // Remplacez cela par vos propres données JSON
-
-                    fetch('/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(jsonData4)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Réponse du serveur :', data);
-                        })
-                        .catch(error => {
-                            console.error('Erreur lors de l\'envoi des données :', error);
-                        });
-                    break
-            }
+        function send(jsonData){
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Réponse du serveur :', data);
+                })
+                .catch(error => {
+                    console.error('Erreur lors de l\'envoi des données :', error);
+                });
         }
     </script>
 </body>

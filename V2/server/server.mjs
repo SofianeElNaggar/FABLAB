@@ -1,12 +1,14 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { up_Volume, down_Volume } from '../Fonctionallités/son.mjs';
-import { brightnessDown, brightnessUp } from '../Fonctionallités/brightness.mjs';
+import { switchAction } from './switch/switchAction.mjs';
+import { buttons } from './Arbre/button.mjs';
 
 const app = express();
 const port = 3000;
 
+let level = [0];
+let buttonsPath = [];
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,13 +16,8 @@ const __dirname = path.dirname(__filename);
 // Utilisez le middleware express.static pour servir les fichiers statiques
 app.use(express.static(path.join(__dirname), { 'extensions': ['html', 'css'] }));
 
-app.use('/styles', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, '../client'), { 'extensions': ['html', 'css'] }));
 
-// Ajoutez ce middleware pour définir le bon en-tête Content-Type pour les fichiers CSS
-app.use('/styles', (req, res, next) => {
-  res.setHeader('Content-Type', 'text/css');
-  next();
-});
 
 app.use(express.json());
 
@@ -33,32 +30,27 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
 app.post('/', async (req, res) => {
   const receivedData = req.body;
   console.log('Données JSON reçues du client :', receivedData);
 
-  switch (receivedData.action){
-    case "b_up":
-      brightnessUp();
-      break
-    case "b_down":
-      brightnessDown();
-      break
-    case "v_up":
-      up_Volume();
-      break
-    case "v_down":
-      down_Volume();
-      break
-    default:
-      console.log("test");
-  }
+  switchAction(receivedData, level, buttonsPath);
 
-  // Faire quelque chose avec les données reçues, par exemple, les renvoyer au client
-  res.json({ status: 'OK', message: 'Données reçues avec succès!' });
+  console.log("-----------------");
+  console.log("Level : " + level);
+  console.log("-----------------")
+  console.log("Path : " + buttonsPath);
+  console.log("-----------------")
+  buttons.print();
+
+  if (receivedData.text === "new buttons" && receivedData.action === "clic") {
+    res.json({ status: 'UPDATE', level: level,  });
+  } else {
+    res.json({ status: 'OK'});
+  }
 });
 
 
