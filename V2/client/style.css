@@ -78,6 +78,13 @@ body {
     margin: 0px;
 }
 
+.path{
+    text-align: center;
+    margin: 0px;
+    font-family: cursive;
+    font-size: large;
+}
+
 #nameList{
     margin: 0px;
 }

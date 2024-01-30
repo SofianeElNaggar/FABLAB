@@ -28,6 +28,7 @@
     </div>
     <div class="menu">
         <h2 class="titleMenu">Menu</h2>
+        <p class="path">Chemin</p>
         <div class="containerC">
             <ul>
                 <li class="btn">
@@ -120,6 +121,18 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log('Réponse du serveur :', data);
+
+                    button1.textContent = data.buttonsValues[0];
+                    button2.textContent = data.buttonsValues[1];
+                    button3.textContent = data.buttonsValues[2];
+                    button4.textContent = data.buttonsValues[3];
+                    button5.textContent = data.buttonsValues[4];
+
+                    if(data.level == 0){
+                        button6.textContent = data.buttonsValues[5];
+                    } else {
+                        button6.textContent = "Retour"
+                    }
                 })
                 .catch(error => {
                     console.error('Erreur lors de l\'envoi des données :', error);
