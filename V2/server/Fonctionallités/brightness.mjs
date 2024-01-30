@@ -24,13 +24,3 @@ export function brightnessUp() {
 export function brightnessDown() {
   adjustBrightness(-0.1);
 }
-
-// Utilisation de la fonction
-if (batteryLevel()) {
-  console.log('Cet appareil est probablement un ordinateur portable.');
-} else {
-  console.log('Cet appareil n\'est probablement pas un ordinateur portable.');
-}
-
-
-

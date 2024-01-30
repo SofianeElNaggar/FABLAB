@@ -70,8 +70,3 @@ export const arbre = {
     isLeafFunc,
     getChild
 }
-
-// Exemple d'utilisation
-const root = createTree('1', 1);
-//printTree(root);
-
