@@ -4,11 +4,9 @@ import { switchButton } from "./switchButton.mjs";
 export function switchAction(data, level, buttonsPath) {
     switch (data.action) {
         case "clic":
-            switchButton(data, level, buttonsPath);
-            break
+            return switchButton(data, level, buttonsPath);
         case "drop":
-            switchDrop(data, level, buttonsPath);
-            break
+            return switchDrop(data, level, buttonsPath);
         default:
 
     }

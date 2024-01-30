@@ -7,20 +7,41 @@ const button = [
     arbre.createTree("Bouton 4", 0),
     arbre.createTree("Bouton 5", 0),
     arbre.createTree("Bouton 6", 0),
-  ];
+];
+
+function getButtons(path) {
+    var buttons = button;
+    for (const i of path) {
+        buttons = arbre.getChild(buttons[i]);
+    }
+    return getValues(buttons);
+}
+
+function getValues(buttons) {
+    var value = [];
+    for (const i of buttons) {
+        value.push(i.value);
+    }
+    return value;
+}
 
 function print() {
-    for(const i of button){
+    for (const i of button) {
         arbre.printTree(i);
     }
 }
 
-function modifTree(i, newVal, d) {
-    button[i] = arbre.createTree(newVal, d);
+function modifTree(i, path, newVal, d) {
+    var b = button;
+    for(const p of path){
+        b = b[p].children;
+    }
+    b[i] = arbre.createTree(newVal, d);
 }
 
 export var buttons = {
     button,
     print,
-    modifTree
+    modifTree,
+    getButtons
 }

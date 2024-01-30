@@ -37,19 +37,26 @@ app.post('/', async (req, res) => {
   const receivedData = req.body;
   console.log('Données JSON reçues du client :', receivedData);
 
-  switchAction(receivedData, level, buttonsPath);
+  const info = switchAction(receivedData, level, buttonsPath);
 
   console.log("-----------------");
   console.log("Level : " + level);
-  console.log("-----------------")
+  console.log("-----------------");
   console.log("Path : " + buttonsPath);
-  console.log("-----------------")
+  console.log("-----------------");
+  console.log("Info : " + info);
+  console.log("-----------------");
+
   buttons.print();
 
-  if (receivedData.text === "new buttons" && receivedData.action === "clic") {
-    res.json({ status: 'UPDATE', level: level,  });
-  } else {
-    res.json({ status: 'OK'});
+  var buttonsValues = buttons.getButtons(buttonsPath);
+
+
+
+  if (info === "down_level") {
+    res.json({ action: 'down', level: level, path: buttonsPath, buttonsValues});
+  } else if(info === "back_level"){
+    res.json({ action: 'back', level: level, path: buttonsPath, buttonsValues});
   }
 });
 

@@ -21,9 +21,13 @@ function createTree(value, depth) {
     const node = new Node(value);
 
     for (let i = 1; i <= 6; i++) {
-        const childValue = `${value}-${i}`;
-        const childNode = createTree(childValue, depth - 1);
-        node.addChild(childNode);
+        if(i === 6){
+
+        }else{
+            const childValue = `${value}-${i}`;
+            const childNode = createTree(childValue, depth - 1);
+            node.addChild(childNode);
+        }
     }
 
     return node;
@@ -69,5 +73,5 @@ export const arbre = {
 
 // Exemple d'utilisation
 const root = createTree('1', 1);
-printTree(root);
-console.log(getChild(root));
+//printTree(root);
+

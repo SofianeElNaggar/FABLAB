@@ -3,7 +3,11 @@ import { brightnessDown, brightnessUp } from '../Fonctionallités/brightness.mjs
 import { buttons } from '../Arbre/button.mjs';
 
 export function switchFunc(i, level, buttonsPath) {
-    switch (buttons.button[i].value) {
+    var b = buttons.button;
+    for(const p of buttonsPath){
+        b = b[p].children;
+    }
+    switch (b[i].value) {
         case "brightness up":
             brightnessUp();
             break
@@ -19,7 +23,7 @@ export function switchFunc(i, level, buttonsPath) {
         case "new buttons":
             level[0]++;
             buttonsPath.push(i)
-            break
+            return "down_level";
         default:
     }
 }

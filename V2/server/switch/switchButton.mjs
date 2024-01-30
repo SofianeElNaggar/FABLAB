@@ -5,23 +5,23 @@ import { buttons } from "../Arbre/button.mjs"
 export function switchButton(data, level, buttonsPath) {
     switch (data.button) {
         case "button1":
-            switchFunc(0, level, buttonsPath);
-            break
+            return switchFunc(0, level, buttonsPath);
         case "button2":
-            switchFunc(1, level, buttonsPath);
-            break
+            return switchFunc(1, level, buttonsPath);
         case "button3":
-            switchFunc(2, level, buttonsPath);
-            break
+            return switchFunc(2, level, buttonsPath);
         case "button4":
-            switchFunc(3, level, buttonsPath);
-            break
+            return switchFunc(3, level, buttonsPath);
         case "button5":
-            switchFunc(4, level, buttonsPath);
-            break
+            return switchFunc(4, level, buttonsPath);
         case "button6":
-            switchFunc(5, level, buttonsPath);
-            break
+            if(level > 0){
+                level[0]--;
+                buttonsPath.pop();
+                return "back_level";
+            }else{
+                return switchFunc(5, level, buttonsPath);
+            }
         default:
             
     }

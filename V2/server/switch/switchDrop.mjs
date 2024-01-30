@@ -3,34 +3,29 @@ import { buttons } from "../Arbre/button.mjs"
 export function switchDrop(data, level, buttonsPath) {
     switch (data.button) {
         case "button1":
-            editContent(0, data.text);
-            break
+            return editContent(0, buttonsPath, data.text);
         case "button2":
-            editContent(1, data.text);
-            break
+            return editContent(1, buttonsPath, data.text);
         case "button3":
-            editContent(2, data.text);
-            break
+            return editContent(2, buttonsPath, data.text);
         case "button4":
-            editContent(3, data.text);
-            break
+            return editContent(3, buttonsPath, data.text);
         case "button5":
-            editContent(4, data.text);
-            break
+            return editContent(4, buttonsPath, data.text);
         case "button6":
-            editContent(5, data.text);
-            break
+            return editContent(5, buttonsPath, data.text);
         default:
 
     }
 }
 
-async function editContent(i, text) {
+async function editContent(i, path, text) {
     switch (text) {
         case "new buttons":
-            buttons.modifTree(i, text, 1);
+            buttons.modifTree(i, path, text, 1);
             break
         default:
-            buttons.modifTree(i, text, 0);
+            buttons.modifTree(i, path, text, 0);
+            break
     }
 }
