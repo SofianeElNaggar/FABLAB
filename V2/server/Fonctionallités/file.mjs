@@ -1,22 +1,15 @@
-const { exec } = require('child_process');
-const path = require('path');
-const readline = require('readline');
+import { exec } from 'child_process';
 
 
-// Chemin du fichier que vous souhaitez ouvrir
-const filePath = 'C:/Users/User/Documents/Matéo/Récapitulatif.pdf';  // Remplacez cela par le chemin de votre fichier 
-
-// Construction du chemin absolu
-const absolutePath = path.resolve(filePath);
-
-// Fonction pour ouvrir le fichier avec le programme par défaut sur Windows
-const openFileOnWindows = (filePath) => {
+// Function to open a file with the default program on Windows
+export const openFileOnWindows = (filePath) => {
   exec(`start "" "${filePath}"`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`Erreur lors de l'ouverture du fichier : ${error.message}`);
-    }
+      console.error(`Error opening the file: ${error.message}`);
+    } 
   });
 };
-openFileOnWindows(filePath)
-// Appel de la fonction avec le chemin du fichier audio
 
+
+//const videoPath = "C:/Users/User/Videos/Captures/Mixer de volume - Haut-parleurs (Realtek(R) Audio) 2021-04-23 17-54-16.mp4";
+//openFileOnWindows(videoPath);

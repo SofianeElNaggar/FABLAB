@@ -1,23 +1,37 @@
+import fs from 'fs';
 
-const fs = require('fs');
-
-const contenu = "Contenu du fichier texte.";
-const cheminFichier = "C:/Users/User/Documents/Matéo/School/Fablab/exemple.txt";
-
-fs.writeFileSync(cheminFichier, contenu);
-
-console.log(`Le fichier ${cheminFichier} a été créé avec succès.`);
-
-// Le texte que vous souhaitez écrire dans le fichier
-const texte = "Ceci est un texte généré automatiquement en utilisant Node.js.";
-
-
-
-// Écriture du texte dans le fichier
-fs.writeFile(cheminFichier, texte, (err) => {
-  if (err) {
-    console.error("Erreur lors de l'écriture du fichier :", err);
-  } else {
-    console.log(`Le texte a été écrit avec succès dans le fichier ${cheminFichier}`);
+// Function to create a file with content
+const createFileWithContent = (filePath, content) => {
+  try {
+    fs.writeFileSync(filePath, content);
+    console.log(`File ${filePath} created successfully with initial content.`);
+  } catch (err) {
+    console.error(`Error creating the file: ${err}`);
   }
-});
+};
+
+// File path
+const filePath = "C:/Users/User/Documents/Matéo/School/Fablab/exemple.txt";
+
+// Initial content for the file
+const initialContent = ""; // You can set the initial content if needed
+
+// Create the file with initial content
+createFileWithContent(filePath, initialContent);
+
+// Text to append to the file
+const additionalText = "Ceci est un texte généré automatiquement en utilisant Node.js.";
+
+// Function to append text to a file
+const appendTextToFile = (filePath, text) => {
+  fs.appendFile(filePath, text, (err) => {
+    if (err) {
+      console.error(`Error appending text to the file: ${err}`);
+    } else {
+      console.log(`Text appended successfully to the file ${filePath}`);
+    }
+  });
+};
+
+// Append the text to the file
+appendTextToFile(filePath, additionalText);

@@ -4,7 +4,7 @@ import loudness from 'loudness';
 const adjustVolume = async (delta) => {
   try {
     const currentVolume = await loudness.getVolume();
-    const newVolume = Math.max(0, Math.min(100, currentVolume + delta));
+    const newVolume = Math.max(0, currentVolume + delta);
     await loudness.setVolume(newVolume);
     console.log(`Volume adjusted to: ${newVolume}`);
   } catch (error) {
@@ -12,12 +12,10 @@ const adjustVolume = async (delta) => {
   }
 };
 
-export function down_Volume (){
+export function downVolume() {
   adjustVolume(-2);
 }
 
-export function up_Volume (){
+export function upVolume() {
   adjustVolume(2);
 }
-
-

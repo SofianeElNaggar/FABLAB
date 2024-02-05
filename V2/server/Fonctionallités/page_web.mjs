@@ -1,18 +1,16 @@
-const { exec } = require('child_process');
+import { exec } from 'child_process';
 
-// Fonction pour ouvrir une page web
-const openWebPage = () => {
-  // Définir l'URL de YouTube
-  const youtubeUrl = 'https://www.youtube.com';
-
-  exec(`start ${youtubeUrl}`, (error, stdout, stderr) => {
+// Function to open a web page
+const openWebPage = (url) => {
+  exec(`start ${url}`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`Erreur lors de l'ouverture de la page web : ${stderr}`);
+      console.error(`Error opening the web page: ${stderr}`);
     } else {
-      console.log(`La page web a été ouverte : ${youtubeUrl}`);
+      console.log(`Web page opened: ${url}`);
     }
   });
 };
 
-// Appeler la fonction pour ouvrir la page web avec l'URL de YouTube
-openWebPage();
+// Example: Open YouTube
+const youtubeUrl = 'https://www.youtube.com';
+openWebPage(youtubeUrl);
