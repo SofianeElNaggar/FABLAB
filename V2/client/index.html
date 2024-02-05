@@ -65,6 +65,15 @@
                 <li class="btn">
                     <button id="option11" draggable="true" ondragstart="drag(event)">Screenshot</button>
                 </li>
+                <li class="btn">
+                    <button id="option12" draggable="true" ondragstart="drag(event)">>||</button>
+                </li>
+                <li class="btn">
+                    <button id="option13" draggable="true" ondragstart="drag(event)">>|</button>
+                </li>
+                <li class="btn">
+                    <button id="option14" draggable="true" ondragstart="drag(event)">|&lt;</button>
+                </li>
             </ul>
 
             <div id="app1List"
@@ -92,6 +101,9 @@
         const option9 = document.getElementById("option9");
         const option10 = document.getElementById("option10");
         const option11 = document.getElementById("option11");
+        const option12 = document.getElementById("option12");
+        const option13 = document.getElementById("option13");
+        const option14 = document.getElementById("option14");
 
 
         const app1ListDiv = document.getElementById("app1List");
@@ -112,10 +124,10 @@
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
             const text = event.target.textContent;
 
-            if(!text.includes("File: C:/")){
-                const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `www.google.com`};
+            if(!text.startsWith("File: ")){
+                const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `default`};
                 send(jsonData);
-            } else if(text.includes("File: C:/")){
+            } else if(text.startsWith("File: ")){
                 const optionContent = document.getElementById("option8").getAttribute("option")
                 const jsonData = { action : "drop", button: `${event.target.id}`, text : "File" , option: optionContent};
                 send(jsonData);
