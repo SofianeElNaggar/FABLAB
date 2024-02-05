@@ -1,6 +1,11 @@
-import { up_Volume, down_Volume } from '../Fonctionallités/son.mjs';
+import { upVolume, downVolume } from '../Fonctionallités/son.mjs';
 import { brightnessDown, brightnessUp } from '../Fonctionallités/brightness.mjs';
 import { buttons } from '../Arbre/button.mjs';
+import { openFileOnWindows } from '../Fonctionallités/file.mjs';
+import { openWebPage } from '../Fonctionallités/page_web.mjs'
+import { captureAndSaveScreenshot } from '../Fonctionallités/screenshot.mjs'
+
+var nbScreenshot = 0;
 
 export function switchFunc(i, level, buttonsPath) {
     var b = buttons.button;
@@ -15,10 +20,10 @@ export function switchFunc(i, level, buttonsPath) {
             brightnessDown();
             break
         case "Volume up":
-            up_Volume();
+            upVolume();
             break
         case "Volume down":
-            down_Volume();
+            downVolume();
             break
         case "new buttons":
             level[0]++;
@@ -26,7 +31,15 @@ export function switchFunc(i, level, buttonsPath) {
             return "down_level";
         case "File":
             var option = b[i].option;
-            //function(option)
+            openFileOnWindows(option);
+            break
+        case "Web":
+            var option = b[i].option;
+            openWebPage(option);
+            break
+        case "Screenshot":
+            var name = "screenshot_" + nbScreenshot + ".png";
+            captureAndSaveScreenshot(name)
             break
         default:
     }

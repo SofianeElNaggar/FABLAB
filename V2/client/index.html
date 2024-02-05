@@ -46,14 +46,20 @@
                 <li class="btn">
                     <button id="option5" draggable="true" ondragstart="drag(event)">App</button>
                 </li>
+                <li class="btn2">
+                    <button id="option6">Fermer</button>
+                </li>
                 <li class="btn">
                     <button id="option7" draggable="true" ondragstart="drag(event)">new buttons</button>
                 </li>
                 <li class="btn">
                     <button id="option8" draggable="true" ondragstart="drag(event)">File</button>
                 </li>
-                <li class="btn2">
-                    <button id="option6">Fermer</button>
+                <li class="btn">
+                    <button id="option9" draggable="true" ondragstart="drag(event)">Web</button>
+                </li>
+                <li class="btn">
+                    <button id="option10" draggable="true" ondragstart="drag(event)">Screenshot</button>
                 </li>
             </ul>
 
@@ -78,7 +84,9 @@
         const option5 = document.getElementById("option5");
         const option6 = document.getElementById("option6");
         const option7 = document.getElementById("option7");
-        const option8 = document.getElementById("option7");
+        const option8 = document.getElementById("option8");
+        const option9 = document.getElementById("option9");
+        const option10 = document.getElementById("option10");
 
 
         const app1ListDiv = document.getElementById("app1List");
@@ -99,7 +107,7 @@
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
             const text = event.target.textContent;
 
-            const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: "test"};
+            const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `www.google.fr`};
 
             send(jsonData);
 

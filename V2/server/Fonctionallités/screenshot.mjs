@@ -3,7 +3,9 @@ import fs from 'fs';
 import path from 'path';
 
 // Function to capture and save a screenshot
-const captureAndSaveScreenshot = async (destinationFolder, fileName) => {
+export const captureAndSaveScreenshot = async (fileName) => {
+
+  const destinationFolder = "../client/Screenshot";
   try {
     // Ensure the destination folder exists, otherwise create it
     if (!fs.existsSync(destinationFolder)) {
@@ -26,7 +28,5 @@ const captureAndSaveScreenshot = async (destinationFolder, fileName) => {
 };
 
 // Example: Capture and save a screenshot
-const destinationFolder = "Example";
-const fileName = 'screenshot.png';
-
-captureAndSaveScreenshot(destinationFolder, fileName);
+//const fileName = 'screenshot.png';
+//captureAndSaveScreenshot(destinationFolder, fileName);
