@@ -1,27 +1,32 @@
+import screenshot from 'screenshot-desktop';
+import fs from 'fs';
+import path from 'path';
 
-const screenshot = require('screenshot-desktop');
-const fs = require('fs');
-const path = require('path');
+// Function to capture and save a screenshot
+const captureAndSaveScreenshot = async (destinationFolder, fileName) => {
+  try {
+    // Ensure the destination folder exists, otherwise create it
+    if (!fs.existsSync(destinationFolder)) {
+      fs.mkdirSync(destinationFolder, { recursive: true });
+    }
 
-// Définir le dossier de destination
-const destinationFolder = "C:/Users/User/Pictures/Screenshots/Fablab"; 
+    // Set the output file path
+    const outputFile = path.join(destinationFolder, fileName);
 
-// Assurez-vous que le dossier de destination existe, sinon créez-le
-if (!fs.existsSync(destinationFolder)) {
-  fs.mkdirSync(destinationFolder, { recursive: true });
-}
+    // Capture the screenshot
+    const imgBuffer = await screenshot();
 
-// Définir le nom du fichier de sortie
-const outputFile = path.join(destinationFolder, 'screenshot.png');
+    // Save the image to the disk
+    fs.writeFileSync(outputFile, imgBuffer);
 
-// Capturer l'écran
-screenshot().then((imgBuffer) => {
-  // Enregistrer l'image sur le disque
-  fs.writeFileSync(outputFile, imgBuffer);
+    console.log(`Screenshot captured successfully. Image saved at: ${outputFile}`);
+  } catch (err) {
+    console.error('Error capturing screenshot:', err);
+  }
+};
 
-  console.log(`Capture d'écran réussie. Image enregistrée sous: ${outputFile}`);
-}).catch((err) => {
-  console.error('Erreur lors de la capture d\'écran:', err);
-});
+// Example: Capture and save a screenshot
+const destinationFolder = "Example";
+const fileName = 'screenshot.png';
 
-screenshot();
+captureAndSaveScreenshot(destinationFolder, fileName);
