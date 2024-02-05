@@ -1,7 +1,8 @@
 class Node {
-    constructor(value) {
+    constructor(value, option) {
         this.value = value;
         this.children = [];
+        this.option = option;
     }
 
     addChild(child) {
@@ -13,12 +14,12 @@ class Node {
     }
 }
 
-function createTree(value, depth) {
+function createTree(value, depth, option) {
     if (depth === 0) {
-        return new Node(value);
+        return new Node(value, option);
     }
 
-    const node = new Node(value);
+    const node = new Node(value, option);
 
     for (let i = 1; i <= 6; i++) {
         if(i === 6){
@@ -53,7 +54,11 @@ function isLeafFunc(arbre){
 
 function printTree(node, depth = 0) {
     const indent = '  '.repeat(depth);
-    console.log(`${indent}Node: ${node.value}`);
+    if(node.option){
+        console.log(`${indent}Node: ${node.value} - Option: ${node.option}`);
+    }else{
+        console.log(`${indent}Node: ${node.value}`);
+    }
 
     if (node.isLeaf()) {
         return;
@@ -70,3 +75,16 @@ export const arbre = {
     isLeafFunc,
     getChild
 }
+
+/*const button = [
+    createTree("Bouton 1", 0),
+    createTree("Bouton 2", 0),
+    createTree("Bouton 3", 0, "test"),
+    createTree("Bouton 4", 0),
+    createTree("Bouton 5", 0),
+    createTree("Bouton 6", 0),
+];
+
+for (const i of button) {
+    arbre.printTree(i);
+}*/

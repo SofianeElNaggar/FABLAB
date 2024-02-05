@@ -49,6 +49,9 @@
                 <li class="btn">
                     <button id="option7" draggable="true" ondragstart="drag(event)">new buttons</button>
                 </li>
+                <li class="btn">
+                    <button id="option8" draggable="true" ondragstart="drag(event)">File</button>
+                </li>
                 <li class="btn2">
                     <button id="option6">Fermer</button>
                 </li>
@@ -75,6 +78,7 @@
         const option5 = document.getElementById("option5");
         const option6 = document.getElementById("option6");
         const option7 = document.getElementById("option7");
+        const option8 = document.getElementById("option7");
 
 
         const app1ListDiv = document.getElementById("app1List");
@@ -95,7 +99,7 @@
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
             const text = event.target.textContent;
 
-            const jsonData = { action : "drop", button: `${event.target.id}`, text : text };
+            const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: "test"};
 
             send(jsonData);
 
@@ -105,7 +109,7 @@
             var butt = document.getElementById(id);
             var selectedApp = butt.textContent;
 
-            const jsonData = { action : "clic", button: `${id}` };
+            const jsonData = { action : "clic", button: `${id}`};
 
             send(jsonData);
         }

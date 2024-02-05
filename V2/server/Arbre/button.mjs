@@ -31,12 +31,12 @@ function print() {
     }
 }
 
-function modifTree(i, path, newVal, d) {
+function modifTree(i, path, newVal, d, option) {
     var b = button;
     for(const p of path){
         b = b[p].children;
     }
-    b[i] = arbre.createTree(newVal, d);
+    b[i] = arbre.createTree(newVal, d, option);
 }
 
 export var buttons = {

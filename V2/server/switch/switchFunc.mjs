@@ -4,7 +4,7 @@ import { buttons } from '../Arbre/button.mjs';
 
 export function switchFunc(i, level, buttonsPath) {
     var b = buttons.button;
-    for(const p of buttonsPath){
+    for (const p of buttonsPath) {
         b = b[p].children;
     }
     switch (b[i].value) {
@@ -24,6 +24,10 @@ export function switchFunc(i, level, buttonsPath) {
             level[0]++;
             buttonsPath.push(i)
             return "down_level";
+        case "File":
+            var option = b[i].option;
+            //function(option)
+            break
         default:
     }
 }
