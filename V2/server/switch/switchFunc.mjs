@@ -4,6 +4,7 @@ import { buttons } from '../Arbre/button.mjs';
 import { openFileOnWindows } from '../Fonctionallités/file.mjs';
 import { openWebPage } from '../Fonctionallités/page_web.mjs'
 import { captureAndSaveScreenshot } from '../Fonctionallités/screenshot.mjs'
+import { mediaNext, mediaPlayPause, mediaPrevious} from '../Fonctionallités/multimedia.mjs'
 
 var nbScreenshot = 0;
 
@@ -39,7 +40,16 @@ export function switchFunc(i, level, buttonsPath) {
             break
         case "Screenshot":
             var name = "screenshot_" + nbScreenshot + ".png";
-            captureAndSaveScreenshot(name)
+            captureAndSaveScreenshot(name);
+            break
+        case ">||":
+            mediaPlayPause();
+            break
+        case ">|":
+            mediaNext();
+            break
+        case "|<":
+            mediaPrevious();
             break
         default:
     }
