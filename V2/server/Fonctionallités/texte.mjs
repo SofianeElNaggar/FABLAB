@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 // Function to create a file with content
-const createFileWithContent = (filePath, content) => {
+export const createFileWithContent = (filePath, content) => {
   try {
     fs.writeFileSync(filePath, content);
     console.log(`File ${filePath} created successfully with initial content.`);

@@ -1,7 +1,7 @@
 import loudness from 'loudness';
 
 // Fonction pour ajuster le volume
-const adjustVolume = async (delta) => {
+export const adjustVolume = async (delta) => {
   try {
     const currentVolume = await loudness.getVolume();
     const newVolume = Math.max(0, currentVolume + delta);
