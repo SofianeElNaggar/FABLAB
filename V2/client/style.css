@@ -16,6 +16,17 @@ body {
     text-align: center;
 }
 
+.containerFile{
+    display: hidden;
+}
+
+.btnFile{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
 .title {
     margin: 20px 0;
 }

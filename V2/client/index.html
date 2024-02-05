@@ -52,14 +52,18 @@
                 <li class="btn">
                     <button id="option7" draggable="true" ondragstart="drag(event)">new buttons</button>
                 </li>
-                <li class="btn">
-                    <button id="option8" draggable="true" ondragstart="drag(event)">File</button>
+                <li class="btnFile">
+                    <div class="containerFile">
+                        <button id="option8" draggable="true" option = "path" ondragstart="drag(event)" onclick="switchFile();">File</button>
+                        <input type="text" placeholder="Chemin du fichier" id="input"></input>
+                        <button id="option9" onclick="getValue();">Valider</button>
+                    </div>
                 </li>
                 <li class="btn">
-                    <button id="option9" draggable="true" ondragstart="drag(event)">Web</button>
+                    <button id="option10" draggable="true" ondragstart="drag(event)">Web</button>
                 </li>
                 <li class="btn">
-                    <button id="option10" draggable="true" ondragstart="drag(event)">Screenshot</button>
+                    <button id="option11" draggable="true" ondragstart="drag(event)">Screenshot</button>
                 </li>
             </ul>
 
@@ -87,6 +91,7 @@
         const option8 = document.getElementById("option8");
         const option9 = document.getElementById("option9");
         const option10 = document.getElementById("option10");
+        const option11 = document.getElementById("option11");
 
 
         const app1ListDiv = document.getElementById("app1List");
@@ -107,9 +112,14 @@
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
             const text = event.target.textContent;
 
-            const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `mail.google.com`};
-
-            send(jsonData);
+            if(!text.includes("File: C:/")){
+                const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `www.google.com`};
+                send(jsonData);
+            } else if(text.includes("File: C:/")){
+                const optionContent = document.getElementById("option8").getAttribute("option")
+                const jsonData = { action : "drop", button: `${event.target.id}`, text : "File" , option: optionContent};
+                send(jsonData);
+            }
 
         }
 
@@ -120,6 +130,19 @@
             const jsonData = { action : "clic", button: `${id}`};
 
             send(jsonData);
+        }
+
+        function getValue() {
+            // Sélectionner l'élément input et récupérer sa valeur
+            var input = document.getElementById("input").value;
+            option8.textContent = "File: "+input;
+            document.getElementById("option8").setAttribute("option", input)
+            document.getElementById("input").value="";
+        }
+
+        function switchFile() {
+            // Sélectionner l'élément input et récupérer sa valeur
+            document.getElementById("input").display
         }
 
         function send(jsonData){
