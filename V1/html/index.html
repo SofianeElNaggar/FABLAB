@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec Boutons et Menu</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Stream Deck</h1>
+        <div class="Boutons">
+            <button class="button" id="button1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 1</button>
+            <button class="button" id="button2" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 2</button>
+            <button class="button" id="button3" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 3</button>
+            <button class="button" id="button4" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 4</button>
+            <button class="button" id="button5" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 5</button>
+            <button class="button" id="button6" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 6</button>
+        </div>
+    </div>
+    <div class="menu">
+        <h2>Menu</h2>
+        <ul>
+            <li>
+                <button id="option1" draggable="true" ondragstart="drag(event)">Option 1</button>
+            </li>
+            <li>
+                <button id="option2" draggable="true" ondragstart="drag(event)">Option 2</button>
+            </li>
+            <li>
+                <button id="option3" draggable="true" ondragstart="drag(event)">Option 3</button>
+            </li>
+            <li>
+                <button id="option4" draggable="true" ondragstart="drag(event)">Option 4</button>
+            </li>
+            <li>
+                <button id="option5" draggable="true" ondragstart="drag(event)">Option 5</button>
+            </li>
+        </ul>
+    </div>
+        <div class="Boutons">
+            <div class="button" id="button1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 1</div>
+            <div class="button" id="button2" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 2</div>
+            <div class="button" id="button3" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 3</div>
+            <div class="button" id="button4" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 4</div>
+            <div class="button" id="button5" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 5</div>
+            <div class="button" id="button6" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clic(this.id)">Bouton 6</div>
+        </div>
+    </div>
+    <script>
+        const button1 = document.getElementById("button1");
+        const button2 = document.getElementById("button2");
+        const button3 = document.getElementById("button3");
+        const button4 = document.getElementById("button4");
+        const button5 = document.getElementById("button5");
+        const button6 = document.getElementById("button6");
+
+        const option1 = document.getElementById("option1");
+        const option2 = document.getElementById("option2");
+        const option3 = document.getElementById("option3");
+        const option4 = document.getElementById("option4");
+        const option5 = document.getElementById("option5");
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.innerText);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const boutonID = event.dataTransfer.mozSourceNode.id;
+            event.target.data = boutonID;
+            event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
+        }
+
+        function clic(id){
+            var button = document.getElementById(id);
+        }
+    </script>
+</body>
+</html>

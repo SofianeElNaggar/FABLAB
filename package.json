@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/new app/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "battery-level": "^3.0.0",
+    "brightness": "^3.0.0",
+    "child_process": "^1.0.2",
+    "express": "^4.18.2",
+    "loudness": "^0.4.2",
+    "mysql": "^2.18.1",
+    "screenshot-desktop": "^1.15.0"
+  }
+}
