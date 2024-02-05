@@ -107,7 +107,7 @@
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
             const text = event.target.textContent;
 
-            const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `www.google.fr`};
+            const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `www.google.com`};
 
             send(jsonData);
 
