@@ -64,5 +64,5 @@ function formaterDate() {
     const minutes = String(dateActuelle.getMinutes()).padStart(2, '0');
     const secondes = String(dateActuelle.getSeconds()).padStart(2, '0');
 
-    return `${jour}j_${mois}m_${annee}a_${heure}h_${minutes}m_${secondes}s`;
+    return `${jour}_${mois}_${annee}_${heure}h_${minutes}m_${secondes}s`;
 }
