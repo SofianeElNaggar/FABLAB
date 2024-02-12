@@ -49,13 +49,14 @@ app.post('/', async (req, res) => {
   buttons.print();
 
   var buttonsValues = buttons.getButtons(buttonsPath);
+  var buttonsOptions = buttons.getButtonsOptions(buttonsPath);
 
   if (info === "down_level") {
-    res.json({ action: 'down', level: level, path: buttonsPath, buttonsValues });
+    res.json({ action: 'down', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
   } else if (info === "back_level") {
-    res.json({ action: 'back', level: level, path: buttonsPath, buttonsValues });
+    res.json({ action: 'back', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
   } else {
-    res.json({ action: 'ok'});
+    res.json({ action: 'ok' });
   }
 });
 
