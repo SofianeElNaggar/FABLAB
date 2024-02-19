@@ -35,7 +35,7 @@ function findExeForApp(directory, appName) {
 // Chemin du répertoire à parcourir
 const directoryPath = 'C:';
 // Nom de l'application
-const appName = 'Discord';
+const appName = 'Firefox';
 
 // Appel de la fonction pour trouver les points d'entrée .exe pour l'application spécifiée
 findExeForApp(directoryPath, appName);

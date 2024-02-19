@@ -1,4 +1,5 @@
 import { arbre } from './arbre.mjs';
+import fs from 'fs'
 
 const button = [
     arbre.createTree("Bouton 1", 0),
@@ -49,10 +50,32 @@ function print() {
 
 function modifTree(i, path, newVal, d, option) {
     var b = button;
-    for(const p of path){
+    for (const p of path) {
         b = b[p].children;
     }
     b[i] = arbre.createTree(newVal, d, option);
+}
+
+function save() {
+    var jsonArray = [];
+    for (const i of button) {
+        jsonArray.push(arbre.treeToJSON(i));
+    }
+
+    const mergedJSON = jsonArray.reduce((acc, obj) => {
+        let key = obj.value;
+        let suffix = 1;
+        if(!acc[key]) {
+            key = obj.value + '-0';
+        }
+        while (acc[key]) {
+          key = obj.value + '-' + suffix++;
+        }
+        acc[key] = obj;
+        return acc;
+      }, {});
+
+    fs.writeFileSync('./save.json', JSON.stringify(mergedJSON, null, 2));
 }
 
 export var buttons = {
@@ -60,5 +83,6 @@ export var buttons = {
     print,
     modifTree,
     getButtons,
-    getButtonsOptions
+    getButtonsOptions,
+    save
 }

@@ -69,11 +69,44 @@ function printTree(node, depth = 0) {
     }
 }
 
+function treeToJSON(node) {
+    const json = {
+        value: node.value,
+        option: node.option,
+        children: node.children.map(child => treeToJSON(child))
+    };
+    return json;
+}
+
+function jsonToTree(json) {
+    const trees = [];
+
+    // Parcourir chaque clé dans le JSON
+    Object.keys(json).forEach(key => {
+        const node = new Node(json[key].value);
+
+        // Si le nœud a des enfants, ajoutez-les récursivement
+        if (json[key].children.size > 0) {
+            json[key].children.forEach(childJson => {
+                const childNode = jsonToTree(childJson);
+                node.addChild(childNode);
+            });
+        }
+        
+        // Ajouter l'arbre à la liste des arbres
+        trees.push(node);
+    });
+
+    return trees;
+}
+
 export const arbre = {
     createTree,
     printTree,
     isLeafFunc,
-    getChild
+    getChild,
+    treeToJSON,
+    jsonToTree
 }
 
 /*const button = [

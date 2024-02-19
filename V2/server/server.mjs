@@ -1,9 +1,11 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
+import { arbre } from './Arbre/arbre.mjs';
 
 const app = express();
 const server = http.createServer(app);
@@ -12,6 +14,7 @@ const port = 3000;
 let level = [0];
 let buttonsPath = [];
 const activeConnections = new Set();
+let isFirstConnection = true;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +23,14 @@ app.use(express.static(path.join(__dirname), { 'extensions': ['html', 'css'] }))
 app.use(express.static(path.resolve(__dirname, '../client'), { 'extensions': ['html', 'css'] }));
 
 app.use(express.json());
+
+
+const jsonData = fs.readFileSync('save.json', 'utf8');
+if (jsonData) {
+  const arbresJson = JSON.parse(jsonData);
+  var a = arbre.jsonToTree(arbresJson);
+  //buttons.button = a;
+}
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -33,6 +44,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', async (req, res) => {
+
   const receivedData = req.body;
   console.log('Données JSON reçues du client :', receivedData);
 
@@ -47,6 +59,8 @@ app.post('/', async (req, res) => {
   console.log("-----------------");
 
   buttons.print();
+
+  buttons.save();
 
   var buttonsValues = buttons.getButtons(buttonsPath);
   var buttonsOptions = buttons.getButtonsOptions(buttonsPath);
