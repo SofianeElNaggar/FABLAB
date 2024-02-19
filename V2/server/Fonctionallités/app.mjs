@@ -1,51 +1,22 @@
-import { exec } from 'child_process';
-import os from 'os';
+import winreg from 'winreg';
 
-// Votre code ici
+// Créer une instance de la clé de registre
+const uninstallKey = new winreg({
+    hive: winreg.HKLM, // HKEY_LOCAL_MACHINE
+    key: '//Software//Microsoft//Windows//CurrentVersion//Uninstall'
+});
 
-// Function to list installed applications
-const listInstalledApplications = () => {
-  try {
-    // Run a command to get a list of installed applications
-    if (os.platform() === 'win32') {  // For Windows
-      exec('wmic product get name, installlocation', (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Error listing installed applications: ${stderr}`);
-        } else {
-          console.log("Installed Applications:");
-          console.log(stdout);
-        }
-      });
-    } else {
-      throw new Error("Unsupported operating system");
+// Lister les sous-clés de la clé de désinstallation
+uninstallKey.keys((err, keys) => {
+    if (err) {
+        console.error('Erreur lors de la récupération des applications installées :', err);
+        return;
     }
-  } catch (error) {
-    console.error(`Error listing installed applications: ${error.message}`);
-  }
-};
 
-// Function to launch a specific application
-const launchApplication = (applicationName) => {
-  try {
-    // Check if the application name ends with .exe
-    if (applicationName.endsWith('.exe')) {
-      // Run the application directly
-      exec(`start "" "${applicationName}"`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Error launching the application: ${stderr}`);
-        }
-      });
-    } else {
-      console.log(`Launching ${applicationName}`);
-    }
-  } catch (error) {
-    console.error(`Error launching the application: ${error.message}`);
-  }
-};
+    // Récupérer les noms des applications à partir des sous-clés
+    const applicationNames = keys.map(key => key.key);
 
-// Example usage
-listInstalledApplications();
-
-// Provide the application name you want to launch
-const appToLaunch = "C:/Users/User/AppData/Local/Programs/Opera/launcher.exe";  // Replace with the application you want to launch
-launchApplication(appToLaunch);
+    // Afficher les noms des applications
+    console.log('Applications installées :');
+    applicationNames.forEach(name => console.log(name));
+});
