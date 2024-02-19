@@ -5,7 +5,6 @@ import path from 'path';
 function findExeForApp(directory, appName) {
     let found = false; // Variable de contrôle pour indiquer si la correspondance a été trouvée
 
-    console.log('test')
     fs.readdir(directory, (err, files) => {
         if (err) {
             return;
@@ -25,6 +24,7 @@ function findExeForApp(directory, appName) {
                 } else if (path.extname(filePath) === '.exe' && file.startsWith(appName)) {
                     found = true; // Correspondance trouvée, mettez la variable de contrôle à true
                     console.log('Point d\'entrée pour', appName, 'trouvé:', filePath);
+                    return;
                 }
             });
         });
@@ -35,7 +35,7 @@ function findExeForApp(directory, appName) {
 // Chemin du répertoire à parcourir
 const directoryPath = 'C:';
 // Nom de l'application
-const appName = 'firefox';
+const appName = 'Discord';
 
 // Appel de la fonction pour trouver les points d'entrée .exe pour l'application spécifiée
 findExeForApp(directoryPath, appName);
