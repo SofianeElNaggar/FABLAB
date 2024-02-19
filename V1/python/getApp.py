@@ -56,5 +56,5 @@ def printListApp ():
         print(str(a) + ' : ' + app)
         a = a + 1
 
-
+printListApp()
 

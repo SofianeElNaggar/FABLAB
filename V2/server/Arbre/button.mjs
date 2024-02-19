@@ -25,6 +25,22 @@ function getValues(buttons) {
     return value;
 }
 
+function getButtonsOptions(path) {
+    var buttons = button;
+    for (const i of path) {
+        buttons = arbre.getChild(buttons[i]);
+    }
+    return getOption(buttons);
+}
+
+function getOption(buttons) {
+    var value = [];
+    for (const i of buttons) {
+        value.push(i.option);
+    }
+    return value;
+}
+
 function print() {
     for (const i of button) {
         arbre.printTree(i);
@@ -43,5 +59,6 @@ export var buttons = {
     button,
     print,
     modifTree,
-    getButtons
+    getButtons,
+    getButtonsOptions
 }

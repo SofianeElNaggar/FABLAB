@@ -54,14 +54,14 @@
                 </li>
                 <li class="btnFile">
                     <div class="containerFile">
-                        <button id="option8" draggable="true" option = "path" ondragstart="drag(event)">File</button>
+                        <button id="option8" draggable="true" option="path" ondragstart="drag(event)">File</button>
                         <input type="text" placeholder="Chemin du fichier" id="input"></input>
                         <button id="option9" onclick="getValue();">Valider</button>
                     </div>
                 </li>
                 <li class="btn">
                     <div class="containerFile">
-                        <button id="option10" draggable="true" option = "path" ondragstart="drag(event)">Web</button>
+                        <button id="option10" draggable="true" option="path" ondragstart="drag(event)">Web</button>
                         <input type="text" placeholder="Lien de la page web" id="input2"></input>
                         <button id="option11" onclick="getValueWeb();">Valider</button>
                     </div>
@@ -129,17 +129,17 @@
             event.target.textContent = event.dataTransfer.mozSourceNode.textContent;
             const text = event.target.textContent;
 
-            if(text.startsWith("Web:")){
+            if (text.startsWith("Web:")) {
                 const optionContent = document.getElementById("option10").getAttribute("option")
                 console.log(1)
-                const jsonData = { action : "drop", button: `${event.target.id}`, text : "Web" , option: optionContent};
+                const jsonData = { action: "drop", button: `${event.target.id}`, text: "Web", option: optionContent };
                 send(jsonData);
-            } else if(text.startsWith("File:")){
+            } else if (text.startsWith("File:")) {
                 const optionContent = document.getElementById("option8").getAttribute("option")
-                const jsonData = { action : "drop", button: `${event.target.id}`, text : "File" , option: optionContent};
+                const jsonData = { action: "drop", button: `${event.target.id}`, text: "File", option: optionContent };
                 send(jsonData);
             } else {
-                const jsonData = { action : "drop", button: `${event.target.id}`, text : text , option: `default`};
+                const jsonData = { action: "drop", button: `${event.target.id}`, text: text, option: `default` };
                 send(jsonData);
             }
 
@@ -149,7 +149,7 @@
             var butt = document.getElementById(id);
             var selectedApp = butt.textContent;
 
-            const jsonData = { action : "clic", button: `${id}`};
+            const jsonData = { action: "clic", button: `${id}` };
 
             send(jsonData);
         }
@@ -157,20 +157,20 @@
         function getValue() {
             // Sélectionner l'élément input et récupérer sa valeur
             var input = document.getElementById("input").value;
-            option8.textContent = "File: "+input;
+            option8.textContent = "File: " + input;
             document.getElementById("option8").setAttribute("option", input)
-            document.getElementById("input").value="";
+            document.getElementById("input").value = "";
         }
 
         function getValueWeb() {
             // Sélectionner l'élément input et récupérer sa valeur
             var input = document.getElementById("input2").value;
-            option10.textContent = "Web: "+input;
+            option10.textContent = "Web: " + input;
             document.getElementById("option10").setAttribute("option", input)
-            document.getElementById("input2").value="";
+            document.getElementById("input2").value = "";
         }
 
-        function send(jsonData){
+        function send(jsonData) {
             fetch('/', {
                 method: 'POST',
                 headers: {
@@ -182,14 +182,38 @@
                 .then(data => {
                     console.log('Réponse du serveur :', data);
 
-                    button1.textContent = data.buttonsValues[0];
-                    button2.textContent = data.buttonsValues[1];
-                    button3.textContent = data.buttonsValues[2];
-                    button4.textContent = data.buttonsValues[3];
-                    button5.textContent = data.buttonsValues[4];
+                    if (data.option[0] !== null) {
+                        button1.textContent = data.buttonsValues[0] + ": " + data.option[0];
+                    } else {
+                        button1.textContent = data.buttonsValues[0];
+                    }
+                    if (data.option[1] !== null) {
+                        button6.textContent = data.buttonsValues[1] + ": " + data.option[1];
+                    } else {
+                        button2.textContent = data.buttonsValues[1];
+                    }
+                    if (data.option[2] !== null) {
+                        button6.textContent = data.buttonsValues[2] + ": " + data.option[2];
+                    } else {
+                        button3.textContent = data.buttonsValues[2];
+                    }
+                    if (data.option[3] !== null) {
+                        button6.textContent = data.buttonsValues[3] + ": " + data.option[3];
+                    } else {
+                        button4.textContent = data.buttonsValues[3];
+                    }
+                    if (data.option[4] !== null) {
+                        button6.textContent = data.buttonsValues[4] + ": " + data.option[4];
+                    } else {
+                        button5.textContent = data.buttonsValues[4];
+                    }
 
-                    if(data.level == 0){
-                        button6.textContent = data.buttonsValues[5];
+                    if (data.level == 0) {
+                        if (data.option[5] !== null) {
+                            button6.textContent = data.buttonsValues[5] + ": " + data.option[5];
+                        } else {
+                            button6.textContent = data.buttonsValues[5];
+                        }
                     } else {
                         button6.textContent = "Retour"
                     }

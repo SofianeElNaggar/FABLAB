@@ -4,9 +4,8 @@ import { buttons } from '../Arbre/button.mjs';
 import { openFileOnWindows } from '../Fonctionallités/file.mjs';
 import { openWebPage } from '../Fonctionallités/page_web.mjs'
 import { captureAndSaveScreenshot } from '../Fonctionallités/screenshot.mjs'
-import { mediaNext, mediaPlayPause, mediaPrevious} from '../Fonctionallités/multimedia.mjs'
+import { mediaNext, mediaPlayPause, mediaPrevious } from '../Fonctionallités/multimedia.mjs'
 
-var nbScreenshot = 0;
 
 export function switchFunc(i, level, buttonsPath) {
     var b = buttons.button;
@@ -39,7 +38,8 @@ export function switchFunc(i, level, buttonsPath) {
             openWebPage(option);
             break
         case "Screenshot":
-            var name = "screenshot_" + nbScreenshot + ".png";
+            console.log(formaterDate());
+            var name = "screenshot_" + formaterDate() + ".png";
             captureAndSaveScreenshot(name);
             break
         case ">||":
@@ -53,4 +53,16 @@ export function switchFunc(i, level, buttonsPath) {
             break
         default:
     }
+}
+
+function formaterDate() {
+    const dateActuelle = new Date();
+    const jour = String(dateActuelle.getDate()).padStart(2, '0');
+    const mois = String(dateActuelle.getMonth() + 1).padStart(2, '0'); // Les mois sont indexés à partir de 0, donc on ajoute 1
+    const annee = dateActuelle.getFullYear();
+    const heure = String(dateActuelle.getHours()).padStart(2, '0');
+    const minutes = String(dateActuelle.getMinutes()).padStart(2, '0');
+    const secondes = String(dateActuelle.getSeconds()).padStart(2, '0');
+
+    return `${jour}_${mois}_${annee}_${heure}h_${minutes}m_${secondes}s`;
 }
