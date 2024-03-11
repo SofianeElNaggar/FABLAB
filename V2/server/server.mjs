@@ -14,7 +14,6 @@ const port = 3000;
 let level = [0];
 let buttonsPath = [];
 const activeConnections = new Set();
-let isFirstConnection = true;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,7 +28,7 @@ const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
   var a = arbre.jsonToTree(arbresJson);
-  //buttons.button = a;
+  //buttons.modifAllTree(a);
 }
 
 app.use((req, res, next) => {
@@ -44,11 +43,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-
   const receivedData = req.body;
   console.log('Données JSON reçues du client :', receivedData);
 
-  const info = switchAction(receivedData, level, buttonsPath);
+  const info =  switchAction(receivedData, level, buttonsPath);
 
   console.log("-----------------");
   console.log("Level : " + level);
@@ -60,10 +58,11 @@ app.post('/', async (req, res) => {
 
   buttons.print();
 
-  buttons.save();
-
   var buttonsValues = buttons.getButtons(buttonsPath);
+  var buttonsChildren = buttons.getChildren(buttonsPath);
   var buttonsOptions = buttons.getButtonsOptions(buttonsPath);
+
+  buttons.save(receivedData.button, level, buttonsPath, buttonsValues, buttonsChildren, buttonsOptions);
 
   if (info === "down_level") {
     res.json({ action: 'down', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });

@@ -1,26 +1,26 @@
 {
-  "Bouton 1-0": {
-    "value": "Bouton 1",
+  "button1": {
+    "value": "button1",
     "children": []
   },
-  "brightness down-0": {
-    "value": "brightness down",
+  "button2": {
+    "value": "button2",
     "children": []
   },
-  "brightness up-0": {
-    "value": "brightness up",
+  "button3": {
+    "value": "button3",
     "children": []
   },
-  "Bouton 4-0": {
-    "value": "Bouton 4",
+  "button4": {
+    "value": "button4",
     "children": []
   },
-  "Bouton 5-0": {
-    "value": "Bouton 5",
+  "button5": {
+    "value": "button5",
     "children": []
   },
-  "Bouton 6-0": {
-    "value": "Bouton 6",
+  "button6": {
+    "value": "button6",
     "children": []
   }
 }
