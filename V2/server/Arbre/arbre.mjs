@@ -69,15 +69,6 @@ function printTree(node, depth = 0) {
     }
 }
 
-function treeToJSON(node) {
-    const json = {
-        value: node.value,
-        option: node.option,
-        children: node.children.map(child => treeToJSON(child))
-    };
-    return json;
-}
-
 function jsonToTree(json) {
     const trees = [];
 
@@ -105,7 +96,6 @@ export const arbre = {
     printTree,
     isLeafFunc,
     getChild,
-    treeToJSON,
     jsonToTree
 }
 

@@ -4,8 +4,29 @@
     "children": []
   },
   "button2": {
-    "value": "button2",
-    "children": []
+    "value": "new buttons",
+    "children": [
+      {
+        "value": "new buttons-1",
+        "children": []
+      },
+      {
+        "value": "brightness up",
+        "children": []
+      },
+      {
+        "value": "new buttons-3",
+        "children": []
+      },
+      {
+        "value": "new buttons-4",
+        "children": []
+      },
+      {
+        "value": "new buttons-5",
+        "children": []
+      }
+    ]
   },
   "button3": {
     "value": "button3",
