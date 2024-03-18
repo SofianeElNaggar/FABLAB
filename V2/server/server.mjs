@@ -27,8 +27,8 @@ app.use(express.json());
 const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
-  //var a = arbre.jsonToTree(arbresJson);
-  buttons.updateButtons(arbresJson);
+  //buttons.updateButtons(arbresJson);
+  buttons.updateButtonV2(arbresJson);
 }
 
 app.use((req, res, next) => {

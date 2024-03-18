@@ -94,61 +94,40 @@ function modifierChildren(b, i, path, currentButtonChildren) {
     }
 }
 
-function updateButtons(json) {
-    var i = 0;
-    for (var key in json) {
-        var buttons = button[i]; // Get the button object from the list
-        var value = json[key].value; // New value from JSON
-        buttons.value = value; // Update button value
 
-        // Recursively update children if they exist
-        if (json[key].children.length > 0) {
-            updateDeep(json, [i]);
-        }
-        i++;
-    }
-}
-
-function updateDeep(json, path){
-    let i = path[0];
-    let name = "button" + (i+1);
-    var currentButton = json[name];
-    var b = button[i];
-    let pth = path.slice();;
-    pth.shift();
-    var cb = getCurrentButton(b, pth);
-    var cbJson = getCurrentButtonInJson(currentButton, pth);
-    
-    console.log(cb)
-    console.log(path)
-    var p = 0;
-    for(var c of cbJson.children){
-        if(c.value === "new buttons"){
-            var newC = arbre.createTree(c.value, 1, c.option)
-            path.push(p)
-            updateDeep(json, path)
+/**
+ * Je sais c'est moche mais j'allais devenir fou
+ * @param {*} json 
+ */
+function updateButtonV2 (json){
+    var index = 0;
+    for(var b in json){
+        if(json[b].value === "new buttons"){
+            let newB = arbre.createTree(json[b].value, 1, json[b].option);
+            button[index] = newB;
+            var index2 = 0
+            for(var c of json[b].children){
+                if(c.value === "new buttons"){
+                    let newB = arbre.createTree(c.value, 1, c.option);
+                    button[index].children[index2] = newB;
+                    var index3 = 0;
+                    for(var c2 of c.children){
+                        let newB = arbre.createTree(c2.value, 0, c2.option);
+                        button[index].children[index2].children[index3] = newB;
+                        index3 ++;
+                    }
+                }else{
+                    let newB = arbre.createTree(c.value, 0, c.option);
+                    button[index].children[index2] = newB;
+                }
+                index2++;
+            }
         }else{
-            var newC = arbre.createTree(c.value, 0, c.option)
+            let newB = arbre.createTree(json[b].value, 0, json[b].option);
+            button[index] = newB;
         }
-        p++;
-        cb.push(newC);
+        index ++;
     }
-}
-
-function getCurrentButton(button1, path){
-    var current = button1;
-    for(var i in path.pop()){
-        current = current.children[i]
-    }
-    return current.children;
-}
-
-function getCurrentButtonInJson(button1, path){
-    var current = button1;
-    for(var i in path){
-        current = current.children[i]
-    }
-    return current;
 }
 
 
@@ -175,7 +154,6 @@ function save(buttonNumber, depth, path, value, children = [], option) {
                     if (i == 0) {
                         var v = path[i] + 1;
                         var p = "button" + v;
-                        console.log("p : " + p);
                         current = current[p].children;
                     } else {
                         current = current[path[i]].children;
@@ -216,6 +194,6 @@ export var buttons = {
     getButtonsOptions,
     getChildren,
     modifAllTree,
-    updateButtons,
+    updateButtonV2,
     save
 }
