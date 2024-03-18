@@ -1,35 +1,14 @@
 {
   "button1": {
-    "value": "Volume down",
+    "value": "button1",
     "children": []
   },
   "button2": {
-    "value": "new buttons",
-    "children": [
-      {
-        "value": "brightness down",
-        "children": []
-      },
-      {
-        "value": "brightness up",
-        "children": []
-      },
-      {
-        "value": "new buttons-3",
-        "children": []
-      },
-      {
-        "value": "new buttons-4",
-        "children": []
-      },
-      {
-        "value": "new buttons-5",
-        "children": []
-      }
-    ]
+    "value": "button2",
+    "children": []
   },
   "button3": {
-    "value": "brightness down",
+    "value": "button3",
     "children": []
   },
   "button4": {

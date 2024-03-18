@@ -106,9 +106,6 @@ function updateButtons(json) {
             updateDeep(json, [i]);
         }
         i++;
-
-        console.log(button);
-        console.log("_______________")
     }
 }
 
@@ -119,8 +116,16 @@ function updateDeep(json, path){
     var b = button[i];
     var cb = getCurrentButton(b, path.shift());
     var cbJson = getCurrentButtonInJson(currentButton, path.shift());
+    var p = 0;
     for(var c of cbJson.children){
-        var newC = arbre.createTree(c.value, 0, c.option)
+        if(c.value === "new buttons"){
+            var newC = arbre.createTree(c.value, 1, c.option)
+            path.push(p)
+            updateDeep(json, path)
+        }else{
+            var newC = arbre.createTree(c.value, 0, c.option)
+        }
+        p++;
         cb.children.push(newC);
     }
 }

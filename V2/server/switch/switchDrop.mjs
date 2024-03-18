@@ -22,7 +22,9 @@ export function switchDrop(data, level, buttonsPath, option) {
 async function editContent(i, path, text, option) {
     switch (text) {
         case "new buttons":
-            buttons.modifTree(i, path, text, 1);
+            if(path.length<2){
+                buttons.modifTree(i, path, text, 1);
+            }
             break
         case "File":
             buttons.modifTree(i, path, text, 0, option);
