@@ -5,7 +5,6 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
-import { arbre } from './Arbre/arbre.mjs';
 
 const app = express();
 const server = http.createServer(app);
@@ -27,7 +26,6 @@ app.use(express.json());
 const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
-  //buttons.updateButtons(arbresJson);
   buttons.updateButtonV2(arbresJson);
 }
 
