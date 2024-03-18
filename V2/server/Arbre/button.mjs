@@ -114,8 +114,13 @@ function updateDeep(json, path){
     let name = "button" + (i+1);
     var currentButton = json[name];
     var b = button[i];
-    var cb = getCurrentButton(b, path.shift());
-    var cbJson = getCurrentButtonInJson(currentButton, path.shift());
+    let pth = path.slice();;
+    pth.shift();
+    var cb = getCurrentButton(b, pth);
+    var cbJson = getCurrentButtonInJson(currentButton, pth);
+    
+    console.log(cb)
+    console.log(path)
     var p = 0;
     for(var c of cbJson.children){
         if(c.value === "new buttons"){
@@ -126,16 +131,16 @@ function updateDeep(json, path){
             var newC = arbre.createTree(c.value, 0, c.option)
         }
         p++;
-        cb.children.push(newC);
+        cb.push(newC);
     }
 }
 
 function getCurrentButton(button1, path){
     var current = button1;
-    for(var i in path){
+    for(var i in path.pop()){
         current = current.children[i]
     }
-    return current;
+    return current.children;
 }
 
 function getCurrentButtonInJson(button1, path){
