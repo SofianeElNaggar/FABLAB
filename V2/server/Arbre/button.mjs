@@ -95,19 +95,51 @@ function modifierChildren(b, i, path, currentButtonChildren) {
 }
 
 function updateButtons(json) {
+    var i = 0;
     for (var key in json) {
-        var index = parseInt(key.replace("button", "")) - 1; // Extract button index
-        var buttons = button[index]; // Get the button object from the list
+        var buttons = button[i]; // Get the button object from the list
         var value = json[key].value; // New value from JSON
         buttons.value = value; // Update button value
 
         // Recursively update children if they exist
         if (json[key].children.length > 0) {
-            updateButtons(json[key].children, buttons.children);
+            updateDeep(json, [i]);
         }
+        i++;
+
+        console.log(button);
+        console.log("_______________")
     }
 }
 
+function updateDeep(json, path){
+    let i = path[0];
+    let name = "button" + (i+1);
+    var currentButton = json[name];
+    var b = button[i];
+    var cb = getCurrentButton(b, path.shift());
+    var cbJson = getCurrentButtonInJson(currentButton, path.shift());
+    for(var c of cbJson.children){
+        var newC = arbre.createTree(c.value, 0, c.option)
+        cb.children.push(newC);
+    }
+}
+
+function getCurrentButton(button1, path){
+    var current = button1;
+    for(var i in path){
+        current = current.children[i]
+    }
+    return current;
+}
+
+function getCurrentButtonInJson(button1, path){
+    var current = button1;
+    for(var i in path){
+        current = current.children[i]
+    }
+    return current;
+}
 
 
 

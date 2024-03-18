@@ -1,13 +1,13 @@
 {
   "button1": {
-    "value": "button1",
+    "value": "Volume down",
     "children": []
   },
   "button2": {
     "value": "new buttons",
     "children": [
       {
-        "value": "new buttons-1",
+        "value": "brightness down",
         "children": []
       },
       {
@@ -29,7 +29,7 @@
     ]
   },
   "button3": {
-    "value": "button3",
+    "value": "brightness down",
     "children": []
   },
   "button4": {
