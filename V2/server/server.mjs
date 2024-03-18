@@ -1,9 +1,11 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
+import { arbre } from './Arbre/arbre.mjs';
 
 const app = express();
 const server = http.createServer(app);
@@ -21,6 +23,14 @@ app.use(express.static(path.resolve(__dirname, '../client'), { 'extensions': ['h
 
 app.use(express.json());
 
+
+const jsonData = fs.readFileSync('save.json', 'utf8');
+if (jsonData) {
+  const arbresJson = JSON.parse(jsonData);
+  var a = arbre.jsonToTree(arbresJson);
+  //buttons.modifAllTree(a);
+}
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -36,7 +46,7 @@ app.post('/', async (req, res) => {
   const receivedData = req.body;
   console.log('Données JSON reçues du client :', receivedData);
 
-  const info = switchAction(receivedData, level, buttonsPath);
+  const info =  switchAction(receivedData, level, buttonsPath);
 
   console.log("-----------------");
   console.log("Level : " + level);
@@ -49,7 +59,10 @@ app.post('/', async (req, res) => {
   buttons.print();
 
   var buttonsValues = buttons.getButtons(buttonsPath);
+  var buttonsChildren = buttons.getChildren(buttonsPath);
   var buttonsOptions = buttons.getButtonsOptions(buttonsPath);
+
+  buttons.save(receivedData.button, level, buttonsPath, buttonsValues, buttonsChildren, buttonsOptions);
 
   if (info === "down_level") {
     res.json({ action: 'down', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
