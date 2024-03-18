@@ -64,9 +64,76 @@ function modifTree(i, path, newVal, d, option) {
     b[i] = arbre.createTree(newVal, d, option);
 }
 
+function modifAllTree(json) {
+    var i = 0;
+    for (var b in json) {
+        button[i].value = json[b].value;
+        button[i].children = json[b].children;
+        button[i].option = json[b].option;
+        if (json[b].children.length !== 0) {
+            const lastCharT = b.charAt(b.length - 1);
+            const numberT = parseInt(lastCharT);
+            modifierChildren(json[b], i, [numberT-1], button[i].children);
+        }
+        i++;
+    }
+}
+
+function modifierChildren(b, i, path, currentButtonChildren) {
+    var d = 0;
+    if (b.children.length !== 0) {
+        d = 1;
+    }
+    modifTree(i, path, b.value, d, b.option, button);
+    if (d === 1) {
+        for(var c = 0; c < b.children.length; c++) {
+            var p = path.slice();
+            p.push(c);
+            modifierChildren(b.children[c], i, p, currentButtonChildren[c].children);
+        }
+    }
+}
+
+
+/**
+ * Je sais c'est moche mais j'allais devenir fou
+ * @param {*} json 
+ */
+function updateButtonV2 (json){
+    var index = 0;
+    for(var b in json){
+        if(json[b].value === "new buttons"){
+            let newB = arbre.createTree(json[b].value, 1, json[b].option);
+            button[index] = newB;
+            var index2 = 0
+            for(var c of json[b].children){
+                if(c.value === "new buttons"){
+                    let newB = arbre.createTree(c.value, 1, c.option);
+                    button[index].children[index2] = newB;
+                    var index3 = 0;
+                    for(var c2 of c.children){
+                        let newB = arbre.createTree(c2.value, 0, c2.option);
+                        button[index].children[index2].children[index3] = newB;
+                        index3 ++;
+                    }
+                }else{
+                    let newB = arbre.createTree(c.value, 0, c.option);
+                    button[index].children[index2] = newB;
+                }
+                index2++;
+            }
+        }else{
+            let newB = arbre.createTree(json[b].value, 0, json[b].option);
+            button[index] = newB;
+        }
+        index ++;
+    }
+}
+
+
+
 function save(buttonNumber, depth, path, value, children = [], option) {
-    // Charger le fichier JSON
-    const lastCharT = buttonNumber.charAt(buttonNumber.length - 1); // Récupère le dernier caractère du string
+    const lastCharT = buttonNumber.charAt(buttonNumber.length - 1);
     const numberT = parseInt(lastCharT);
     if (depth != 0 && numberT < 5 || depth == 0) {
         fs.readFile('./save.json', 'utf8', (err, data) => {
@@ -75,42 +142,34 @@ function save(buttonNumber, depth, path, value, children = [], option) {
                 return;
             }
 
-            const lastChar = buttonNumber.charAt(buttonNumber.length - 1); // Récupère le dernier caractère du string
+            const lastChar = buttonNumber.charAt(buttonNumber.length - 1);
             const number = parseInt(lastChar);
 
             let json = JSON.parse(data);
 
-
-
             let current = json;
 
-            console.log(current);
             if (depth > 0) {
                 for (let i = 0; i < depth; i++) {
                     if (i == 0) {
                         var v = path[i] + 1;
                         var p = "button" + v;
-                        console.log("p : " + p);
-                        current = current[p].children; // Accéder à la prochaine profondeur
+                        current = current[p].children;
                     } else {
-                        current = current[path[i]].children; // Accéder à la prochaine profondeur
+                        current = current[path[i]].children;
                     }
                 }
             }
-            console.log("-----------")
-            console.log(current);
 
             var lastIndex;
             if (depth == 0) {
                 lastIndex = buttonNumber
             } else {
-                console.log("path : " + path)
                 lastIndex = number - 1;
             }
 
             // Vérifier si le numéro de bouton est valide
             if (buttonNumber in json) {
-                console.log("lastIndex : " + lastIndex)
                 current[lastIndex].value = value[number - 1];
                 current[lastIndex].children = children[number - 1].children;
                 current[lastIndex].option = option[number - 1];
@@ -121,10 +180,7 @@ function save(buttonNumber, depth, path, value, children = [], option) {
                         console.error(err);
                         return;
                     }
-                    console.log('Mise à jour effectuée avec succès !');
                 });
-            } else {
-                console.log("Le numéro de bouton n'est pas valide.");
             }
         });
     }
@@ -137,5 +193,7 @@ export var buttons = {
     getButtons,
     getButtonsOptions,
     getChildren,
+    modifAllTree,
+    updateButtonV2,
     save
 }

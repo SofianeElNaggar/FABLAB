@@ -27,8 +27,8 @@ app.use(express.json());
 const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
-  var a = arbre.jsonToTree(arbresJson);
-  //buttons.modifAllTree(a);
+  //buttons.updateButtons(arbresJson);
+  buttons.updateButtonV2(arbresJson);
 }
 
 app.use((req, res, next) => {
@@ -48,15 +48,7 @@ app.post('/', async (req, res) => {
 
   const info =  switchAction(receivedData, level, buttonsPath);
 
-  console.log("-----------------");
-  console.log("Level : " + level);
-  console.log("-----------------");
-  console.log("Path : " + buttonsPath);
-  console.log("-----------------");
-  console.log("Info : " + info);
-  console.log("-----------------");
-
-  buttons.print();
+  //buttons.print();
 
   var buttonsValues = buttons.getButtons(buttonsPath);
   var buttonsChildren = buttons.getChildren(buttonsPath);
