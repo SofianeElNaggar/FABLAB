@@ -61,7 +61,7 @@ app.post('/', async (req, res) => {
   } else if (info === "back_level") {
     res.json({ action: 'back', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
   } else {
-    res.json({ action: 'ok' });
+    res.json({ action: 'ok', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
   }
 });
 
