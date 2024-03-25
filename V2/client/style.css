@@ -16,6 +16,26 @@ body {
     text-align: center;
 }
 
+.actualiser{
+    margin-bottom: 5%;
+}
+
+.btn-actualiser{
+    font-size: 25px;
+    width: 17%;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #040fac;
+    color: white;
+    margin-bottom: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-actualiser:hover {
+    background-color: rgb(4, 15, 172, 0.80);
+}
+
 .containerFile{
     display: hidden;
 }
