@@ -1,41 +1,19 @@
 {
   "button1": {
-    "value": "brightness up",
+    "value": "button1",
     "children": []
   },
   "button2": {
-    "value": "brightness down",
+    "value": "button2",
     "children": []
   },
   "button3": {
-    "value": "Volume up",
+    "value": "button3",
     "children": []
   },
   "button4": {
-    "value": "new buttons",
-    "children": [
-      {
-        "value": "Web",
-        "children": [],
-        "option": "https://sso-cas.univ-rennes1.fr/login?service=https%3A%2F%2Ffoad.univ-rennes1.fr%2F%2Flogin%2Findex.php%3FauthCAS%3DCAS"
-      },
-      {
-        "value": "new buttons-2",
-        "children": []
-      },
-      {
-        "value": "new buttons-3",
-        "children": []
-      },
-      {
-        "value": "new buttons-4",
-        "children": []
-      },
-      {
-        "value": "new buttons-5",
-        "children": []
-      }
-    ]
+    "value": "button4",
+    "children": []
   },
   "button5": {
     "value": "button5",
