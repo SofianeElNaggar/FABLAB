@@ -26,8 +26,3 @@ export const captureAndSaveScreenshot = async (fileName) => {
     console.error('Error capturing screenshot:', err);
   }
 };
-
-//Example: Capture and save a screenshot
-
-const fileName = 'screenshot.png';
-captureAndSaveScreenshot( fileName);
