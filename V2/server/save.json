@@ -1,10 +1,10 @@
 {
   "button1": {
-    "value": "button1",
+    "value": "brightness down",
     "children": []
   },
   "button2": {
-    "value": "button2",
+    "value": "brightness up",
     "children": []
   },
   "button3": {
