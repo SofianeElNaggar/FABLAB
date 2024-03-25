@@ -1,5 +1,9 @@
 import { switchFunc } from "./switchFunc.mjs"
-import { buttons } from "../Arbre/button.mjs"
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 
 export function switchButton(data, level, buttonsPath) {
@@ -22,7 +26,20 @@ export function switchButton(data, level, buttonsPath) {
             }else{
                 return switchFunc(5, level, buttonsPath);
             }
+        case "reset":
+            ecraserContenu();
         default:
             
     }
+}
+
+
+function ecraserContenu() {
+    const cheminFichierA = path.resolve(__dirname, `../save.json`);
+    const cheminFichierB = path.resolve(__dirname, `../emptySave.json`);
+    const contenuB = fs.readFileSync(cheminFichierB, 'utf8');
+
+    fs.writeFileSync(cheminFichierA, contenuB);
+
+    console.log(`Le contenu du fichier ${cheminFichierA} a été écrasé avec succès.`);
 }
