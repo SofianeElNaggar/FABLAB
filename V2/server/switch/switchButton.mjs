@@ -2,6 +2,7 @@ import { switchFunc } from "./switchFunc.mjs"
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { buttons } from '../Arbre/button.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,17 +20,17 @@ export function switchButton(data, level, buttonsPath) {
         case "button5":
             return switchFunc(4, level, buttonsPath);
         case "button6":
-            if(level > 0){
+            if (level > 0) {
                 level[0]--;
                 buttonsPath.pop();
                 return "back_level";
-            }else{
+            } else {
                 return switchFunc(5, level, buttonsPath);
             }
         case "reset":
             ecraserContenu();
         default:
-            
+
     }
 }
 
@@ -41,5 +42,9 @@ function ecraserContenu() {
 
     fs.writeFileSync(cheminFichierA, contenuB);
 
-    console.log(`Le contenu du fichier ${cheminFichierA} a été écrasé avec succès.`);
+    const jsonData = fs.readFileSync(cheminFichierA, 'utf8');
+    if (jsonData) {
+        const arbresJson = JSON.parse(jsonData);
+        buttons.updateButtonV2(arbresJson);
+    }
 }
