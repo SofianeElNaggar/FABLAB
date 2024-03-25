@@ -1,7 +1,6 @@
 import asyncio
 import sys
 from bleak import BleakClient, BleakScanner
-import json
 
 # Définition des UUIDs pour le service UART et ses caractéristiques RX et TX.
 UART_SERVICE_UUID = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -13,9 +12,6 @@ def gestionnaire_notifications(expediteur, donnees):
     # Conversion des données bytearray en string et impression pour Node.js
     message_recu = donnees.decode('utf-8')
     print(message_recu, file=sys.stderr)  # Les données sont directement imprimées pour être capturées par Node.js
-      # Création d'un dictionnaire JSON avec le bouton appuyé
-    data_json = json.dumps({"button": message_recu})
-    print("Données JSON envoyées à Node.js:", data_json, file=sys.stderr)
 
 async def executer_client_ble():
     dispositifs = await BleakScanner.discover()
@@ -37,7 +33,7 @@ async def executer_client_ble():
         print(f"Je suis connecté à {dispositif_cible.name}", file=sys.stderr)
         
         await client.start_notify(UART_TX_CHARACTERISTIC_UUID, gestionnaire_notifications)
-        await client.write_gatt_char(UART_RX_CHARACTERISTIC_UUID, "Bonjour, Pico !")
+        await client.write_gatt_char(UART_RX_CHARACTERISTIC_UUID, b"Bonjour, Pico !")
 
         # Instruction pour maintenir le script en écoute, redirigée vers stderr
         print("J'écoute les données, appuyez sur Ctrl+C pour quitter...", file=sys.stderr)

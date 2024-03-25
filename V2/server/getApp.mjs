@@ -1,6 +1,7 @@
 
 import { spawn } from 'child_process';
-import { switchFunc } from './switch/switchFunc.mjs';
+
+import { switchButton } from './switch/switchButton.mjs';
 
 
 const scriptPython = 'C:/Users/User/Documents/GitHub/V2/server/bleco.py';
@@ -23,7 +24,7 @@ export function bleco (level,buttonsPath){
     console.log("Données JSON reçues du Pico:", jsonData);
     
     // Utiliser les données JSON dans une fonction switch
-    switchFunc(level,buttonsPath);
+    switchButton(data,level,buttonsPath);
   } catch (error) {
     console.error("Error parsing data to JSON:", error);
     // Gérer l'erreur en conséquence
