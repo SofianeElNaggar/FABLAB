@@ -28,7 +28,7 @@ const appendTextToFile = (filePath, text) => {
     if (err) {
       console.error(`Error appending text to the file: ${err}`);
     } else {
-      console.log(`Text appended successfully to the file ${filePath}`);
+      //console.log(`Text appended successfully to the file ${filePath}`);
     }
   });
 };

@@ -1,18 +1,18 @@
 {
   "button1": {
-    "value": "button1",
+    "value": "brightness up",
     "children": []
   },
   "button2": {
-    "value": "button2",
+    "value": "brightness down",
     "children": []
   },
   "button3": {
-    "value": "button3",
+    "value": "Volume up",
     "children": []
   },
   "button4": {
-    "value": "button4",
+    "value": "Volume down",
     "children": []
   },
   "button5": {

@@ -6,7 +6,7 @@ export const adjustVolume = async (delta) => {
     const currentVolume = await loudness.getVolume();
     const newVolume = Math.max(0, currentVolume + delta);
     await loudness.setVolume(newVolume);
-    console.log(`Volume adjusted to: ${newVolume}`);
+    //console.log(`Volume adjusted to: ${newVolume}`);
   } catch (error) {
     console.error('Error adjusting volume:', error);
   }

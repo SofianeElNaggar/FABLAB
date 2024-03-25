@@ -5,8 +5,12 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
+import kleur from 'kleur';
 import network from 'network';
 
+//------------ Couleur ------------
+const info = kleur.blue;
+//----------------------------------
 
 const app = express();
 const server = http.createServer(app);
@@ -44,7 +48,7 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const receivedData = req.body;
-  console.log('Données JSON reçues du client :', receivedData);
+  //console.log('Données JSON reçues du client :', receivedData);
 
   const info =  switchAction(receivedData, level, buttonsPath);
 
@@ -72,10 +76,12 @@ server.on('connection', (connection) => {
 });
 
 server.listen(port, '0.0.0.0', () => {
-  console.log(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`);
+  console.log(info(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`));
+  console.log();
   network.get_active_interface((err, iface) => {
-    console.log("Pour se connecter à l'application web via telephone, utilisez l'addresse suivante : http://" + iface.ip_address + ":" + port);
-
+    console.log();
+    console.log(info("Pour se connecter à l'application web via telephone, utilisez l'addresse suivante : http://" + iface.ip_address + ":" + port));
+    console.log();
   });
 });
 
