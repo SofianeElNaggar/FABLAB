@@ -5,6 +5,8 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
+import network from 'network';
+
 
 const app = express();
 const server = http.createServer(app);
@@ -69,8 +71,12 @@ server.on('connection', (connection) => {
   activeConnections.add(connection);
 });
 
-server.listen(port, () => {
+server.listen(port, '0.0.0.0', () => {
   console.log(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`);
+  network.get_active_interface((err, iface) => {
+    console.log("Pour se connecter à l'application web via telephone, utilisez l'addresse suivante : http://" + iface.ip_address + ":" + port);
+
+  });
 });
 
 // Gestion des déconnexions
