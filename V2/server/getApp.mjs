@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 import { switchFunc } from './switch/switchFunc.mjs';
 
 
-const scriptPython = 'bleco.py';
+const scriptPython = 'C:/Users/User/Documents/GitHub/V2/server/bleco.py';
 export const pythonProcess = spawn('python', [scriptPython]);
 
 pythonProcess.stdout.on('data', (data) => {
@@ -12,7 +12,7 @@ pythonProcess.stdout.on('data', (data) => {
   console.log(`Données reçues du Pico: ${resultat}`);
 });
 
-export function bleco (){
+export function bleco (level,buttonsPath){
     pythonProcess.stderr.on('data', (data) => {
   // Capturer les erreurs ou messages de débogage du script Python
   console.log(`${data}`);
@@ -23,7 +23,7 @@ export function bleco (){
     console.log("Données JSON reçues du Pico:", jsonData);
     
     // Utiliser les données JSON dans une fonction switch
-    switchFunc(jsonData);
+    switchFunc(level,buttonsPath);
   } catch (error) {
     console.error("Error parsing data to JSON:", error);
     // Gérer l'erreur en conséquence
