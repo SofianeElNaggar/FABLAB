@@ -1,2 +1,2 @@
-import { adjustBrightness, brightnessUp, brightnessDown} from './brightness.mjs';
+import { adjustBrightness, brightnessUp, brightnessDown} from 'V1/maquette/brightness.mjs';
 

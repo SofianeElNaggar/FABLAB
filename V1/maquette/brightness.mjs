@@ -1,4 +1,4 @@
-import brightness from './node_modules/brightness';
+import brightness from 'V1/maquette/node_modules/brightness';
 
 export const adjustBrightness = async (delta) => {
     try {
