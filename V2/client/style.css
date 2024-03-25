@@ -19,7 +19,7 @@ body {
 .actualiser{
     margin-bottom: 5%;
 }
-
+/*
 .btn-actualiser{
     font-size: 25px;
     width: 17%;
@@ -30,10 +30,47 @@ body {
     margin-bottom: 5%;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}*/
+
+.cont-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 70%;
+}
+
+.btn-actualiser{
+    font-size: 20px;
+    width: 20%;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #040fac;
+    color: white;
+    margin-bottom: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reset{
+    font-size: 20px;
+    width: 15%;
+    height: 40px;
+    border-radius: 50px;
+    margin-bottom: 5%;
+    background-color: rgb(228, 3, 3, 0.9);
+    color: white;
+    margin-bottom: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn-actualiser:hover {
     background-color: rgb(4, 15, 172, 0.80);
+}
+
+.btn-reset:hover {
+    background-color: rgb(228, 3, 3, 0.7);
 }
 
 .containerFile{
