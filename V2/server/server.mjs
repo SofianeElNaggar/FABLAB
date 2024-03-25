@@ -5,6 +5,8 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
+import { arbre } from './Arbre/arbre.mjs';
+import { bleco } from './getApp.mjs';
 import kleur from 'kleur';
 import network from 'network';
 
@@ -28,7 +30,7 @@ app.use(express.static(path.resolve(__dirname, '../client'), { 'extensions': ['h
 
 app.use(express.json());
 
-
+bleco(level,buttonsPath)
 const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
