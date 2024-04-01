@@ -8,19 +8,19 @@
     "children": []
   },
   "button3": {
-    "value": "button3",
+    "value": "brightness down",
     "children": []
   },
   "button4": {
-    "value": "button4",
+    "value": "brightness up",
     "children": []
   },
   "button5": {
-    "value": "button5",
+    "value": "brightness down",
     "children": []
   },
   "button6": {
-    "value": "button6",
+    "value": "brightness up",
     "children": []
   }
 }
