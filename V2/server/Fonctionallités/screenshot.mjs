@@ -28,6 +28,3 @@ export const captureAndSaveScreenshot = async (fileName) => {
 };
 
 //Example: Capture and save a screenshot
-
-const fileName = 'screenshot.png';
-captureAndSaveScreenshot( fileName);
