@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
 import { arbre } from './Arbre/arbre.mjs';
-import { bleco } from './getApp.mjs';
+import { bleco } from './PythonToJson.mjs';
 import kleur from 'kleur';
 import network from 'network';
 
