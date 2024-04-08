@@ -26,7 +26,7 @@ pythonProcess.stderr.on('data', (data) => {
 // Gestion de la fin de l'exécution du script Python
 pythonProcess.on('close', (code) => {
   if (code== 0){
-    console.log("Vous n'êtes pas connecté au boitier")
+    console.log("Vous n'êtes pas connecté au boitier/bluetooth")
   }
   else if (code == 1){
     console.log("Vous n'êtes pas connecté au bluetooth")
