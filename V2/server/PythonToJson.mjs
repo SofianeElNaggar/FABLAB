@@ -11,7 +11,6 @@ export function bleco (level,buttonsPath){
   try {
     const jsonData = JSON.parse(data.toString());
     //console.log('Données reçues du script Python :', jsonData);
-    // Faites ce que vous voulez avec les données JSON ici
     switchButton(jsonData,level,buttonsPath)
 
   } catch (error) {
@@ -26,5 +25,13 @@ pythonProcess.stderr.on('data', (data) => {
 
 // Gestion de la fin de l'exécution du script Python
 pythonProcess.on('close', (code) => {
-  console.log(`Le script Python s'est terminé avec le code ${code}`);
+  if (code== 0){
+    console.log("Vous n'êtes pas connecté au boitier")
+  }
+  else if (code == 1){
+    console.log("Vous n'êtes pas connecté au bluetooth")
+  }
+  else{
+    console.log(`Le script Python s'est terminé avec le code ${code}`);
+  }
 });
