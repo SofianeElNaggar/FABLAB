@@ -32,6 +32,9 @@ async function editContent(i, path, text, option) {
         case "Web":
             buttons.modifTree(i, path, text, 0, option);
             break
+        case "Raccourci":
+            buttons.modifTree(i, path, text, 0, option);
+            break
         default:
             buttons.modifTree(i, path, text, 0);
             break

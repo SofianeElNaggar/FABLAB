@@ -82,6 +82,10 @@
                 <li class="btn">
                     <button id="option15" draggable="true" ondragstart="drag(event)">|&lt;</button>
                 </li>
+                <li class="btn">
+                    <button id="option16" draggable="true" ondragstart="drag(event)"
+                        onclick="openShortcutPopup();">Raccourci</button>
+                </li>
             </ul>
 
             <div id="app1List"
@@ -113,13 +117,14 @@
         const option13 = document.getElementById("option13");
         const option14 = document.getElementById("option14");
         const option15 = document.getElementById("option15");
+        const option16 = document.getElementById("option16");
 
 
         const app1ListDiv = document.getElementById("app1List");
         const nameList = document.getElementById("nameList");
 
         var newButton = document.getElementById("newButton");
-                    var niveau2DejaAtteint = 0;
+        var niveau2DejaAtteint = 0;
 
         function allowDrop(event) {
             event.preventDefault();
@@ -144,6 +149,10 @@
             } else if (text.startsWith("File:")) {
                 const optionContent = document.getElementById("option8").getAttribute("option")
                 const jsonData = { action: "drop", button: `${event.target.id}`, text: "File", option: optionContent };
+                send(jsonData);
+            } else if (text.startsWith("Raccourci:")) {
+                const optionContent = document.getElementById("option16").getAttribute("option")
+                const jsonData = { action: "drop", button: `${event.target.id}`, text: "Raccourci", option: optionContent };
                 send(jsonData);
             } else {
                 const jsonData = { action: "drop", button: `${event.target.id}`, text: text, option: `default` };
@@ -175,6 +184,72 @@
             option10.textContent = "Web: " + input;
             document.getElementById("option10").setAttribute("option", input)
             document.getElementById("input2").value = "";
+        }
+
+        function openShortcutPopup() {
+            // Créer un élément popup
+            const popup = document.createElement("div");
+            popup.id = "shortcut-popup";
+            popup.style.display = "block";
+            popup.style.position = "fixed";
+            popup.style.top = "50%";
+            popup.style.left = "50%";
+            popup.style.transform = "translate(-50%, -50%)";
+            popup.style.backgroundColor = "white";
+            popup.style.padding = "20px";
+            popup.style.borderRadius = "5px";
+
+            // Contenu de la popup
+            const content = `
+    <h3>Créer un raccourci clavier</h3>
+    <p>Entrez le raccourci clavier que vous souhaitez utiliser (ex: Ctrl+C):</p>
+    <input type="text" id="shortcut-input" placeholder="Raccourci clavier">
+    <button id="shortcut-submit">Valider</button>
+  `;
+
+            popup.innerHTML = content;
+
+            // Ajout de la popup au document
+            document.body.appendChild(popup);
+
+            // Fonction pour fermer la popup
+            function closePopup() {
+                popup.parentNode.removeChild(popup);
+            }
+
+            // Fonction pour modifier le bouton "Raccourci"
+            function updateShortcutButton(shortcutValue) {
+                const shortcutText = `Raccourci: ${shortcutValue}`;
+                const buttonText = document.getElementById("option16").textContent;
+                document.getElementById("option16").textContent = shortcutText;
+                // Modifier l'option du bouton
+                option16.setAttribute("option", shortcutValue);
+            }
+
+            // Ecouter l'événement "click" sur le bouton de validation
+            const submitButton = document.getElementById("shortcut-submit");
+            submitButton.addEventListener("click", () => {
+                const shortcutInput = document.getElementById("shortcut-input");
+                const shortcutValue = shortcutInput.value;
+
+                // Enregistrer le raccourci clavier dans la variable "option"
+                const option = shortcutValue;
+
+                // Envoyer les données au serveur (implémentez la logique de votre serveur)
+
+                // Fermer la popup
+                closePopup();
+
+                // Mettre à jour le bouton "Raccourci" avec le raccourci saisi
+                updateShortcutButton(shortcutValue);
+            });
+
+            // Ecouter l'événement "click" sur l'extérieur de la popup pour la fermer
+            popup.addEventListener("click", (event) => {
+                if (event.target === popup) {
+                    closePopup();
+                }
+            });
         }
 
         function send(jsonData) {
@@ -225,13 +300,13 @@
                     } else {
                         button6.textContent = "Retour"
                     }
-                    
-                    
-                    if(data.level[0] == 2){
+
+
+                    if (data.level[0] == 2) {
                         newButton.parentNode.removeChild(newButton);
-                        niveau2DejaAtteint = 1; 
+                        niveau2DejaAtteint = 1;
                     }
-                    if (data.level[0] != 2 && niveau2DejaAtteint == 1 ){
+                    if (data.level[0] != 2 && niveau2DejaAtteint == 1) {
                         console.log(1)
                         document.getElementById("btnFile").parentNode.insertBefore(newButton, document.getElementById("btnFile"))
                     }
