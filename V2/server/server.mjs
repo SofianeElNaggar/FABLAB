@@ -59,7 +59,7 @@ app.post('/', async (req, res) => {
 
   const info =  switchAction(receivedData, level, buttonsPath);
 
-  //buttons.print();
+  buttons.printLevel(buttonsPath);
 
   var buttonsValues = buttons.getButtons(buttonsPath);
   var buttonsChildren = buttons.getChildren(buttonsPath);

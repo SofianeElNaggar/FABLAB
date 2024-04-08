@@ -1,26 +1,48 @@
 {
-    "button1": {
-      "value": "button1",
-      "children": []
-    },
-    "button2": {
-      "value": "button2",
-      "children": []
-    },
-    "button3": {
-      "value": "button3",
-      "children": []
-    },
-    "button4": {
-      "value": "button4",
-      "children": []
-    },
-    "button5": {
-      "value": "button5",
-      "children": []
-    },
-    "button6": {
-      "value": "button6",
-      "children": []
-    }
+  "button1": {
+    "value": "brightness up",
+    "children": []
+  },
+  "button2": {
+    "value": "brightness down",
+    "children": []
+  },
+  "button3": {
+    "value": "File",
+    "children": [],
+    "option": "test"
+  },
+  "button4": {
+    "value": "new buttons",
+    "children": [
+      {
+        "value": "brightness up",
+        "children": []
+      },
+      {
+        "value": "new buttons-2",
+        "children": []
+      },
+      {
+        "value": "new buttons-3",
+        "children": []
+      },
+      {
+        "value": "new buttons-4",
+        "children": []
+      },
+      {
+        "value": "new buttons-5",
+        "children": []
+      }
+    ]
+  },
+  "button5": {
+    "value": "button5",
+    "children": []
+  },
+  "button6": {
+    "value": "button6",
+    "children": []
   }
+}
