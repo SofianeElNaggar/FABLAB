@@ -1,48 +1,26 @@
 {
   "button1": {
-    "value": "brightness down",
+    "value": "button1",
     "children": []
   },
   "button2": {
-    "value": "brightness up",
+    "value": "button2",
     "children": []
   },
   "button3": {
-    "value": "new buttons",
-    "children": [
-      {
-        "value": "new buttons-1",
-        "children": []
-      },
-      {
-        "value": "new buttons-2",
-        "children": []
-      },
-      {
-        "value": "new buttons-3",
-        "children": []
-      },
-      {
-        "value": "new buttons-4",
-        "children": []
-      },
-      {
-        "value": "new buttons-5",
-        "children": []
-      }
-    ]
+    "value": "button3",
+    "children": []
   },
   "button4": {
-    "value": "brightness up",
+    "value": "button4",
     "children": []
   },
   "button5": {
-    "value": "brightness up",
+    "value": "button5",
     "children": []
   },
   "button6": {
-    "value": "Web",
-    "children": [],
-    "option": "https://www.youtube.com/"
+    "value": "button6",
+    "children": []
   }
 }
