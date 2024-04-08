@@ -14,6 +14,9 @@ import network from 'network';
 const info = kleur.blue;
 //----------------------------------
 
+// Supprimer l'avertissement Iconv-lite
+process.stderr.write = () => {};
+
 const app = express();
 const server = http.createServer(app);
 const port = 3000;
