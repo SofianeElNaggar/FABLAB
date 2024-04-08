@@ -12,7 +12,7 @@ const adjustBrightness = async (delta) => {
     let currentBrightness = await brightness.get();
     currentBrightness = Math.max(0, Math.min(1, currentBrightness + delta));
     await brightness.set(currentBrightness);
-    console.log(`Luminosité ajustée à : ${Math.round(currentBrightness * 100)}%`);
+    //console.log(`Luminosité ajustée à : ${Math.round(currentBrightness * 100)}%`);
   } catch (error) {
     console.error('Erreur lors de l\'ajustement de la luminosité :', error);
   }

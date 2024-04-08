@@ -6,7 +6,7 @@ export const openWebPage = (url) => {
     if (error) {
       console.error(`Error opening the web page: ${stderr}`);
     } else {
-      console.log(`Web page opened: ${url}`);
+      //console.log(`Web page opened: ${url}`);
     }
   });
 };

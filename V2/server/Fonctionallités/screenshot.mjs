@@ -21,10 +21,8 @@ export const captureAndSaveScreenshot = async (fileName) => {
     // Save the image to the disk
     fs.writeFileSync(outputFile, imgBuffer);
 
-    console.log(`Screenshot captured successfully. Image saved at: ${outputFile}`);
+    //console.log(`Screenshot captured successfully. Image saved at: ${outputFile}`);
   } catch (err) {
     console.error('Error capturing screenshot:', err);
   }
 };
-
-//Example: Capture and save a screenshot

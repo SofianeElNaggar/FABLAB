@@ -10,27 +10,31 @@
 
 <body>
     <div class="container">
-        <h1 class="title">Our S-Deck</h1>
+        <div class="cont-btn">
+            <button class="btn-actualiser" id="button-actualiser" onclick="clic(this.id)">Actualiser</button>
+            <button class="btn-reset" id="reset" onclick="clic(this.id)">Reset</button>
+        </div>
+        <h1 class="title">S-Deck</h1>
         <div class="Boutons">
             <button class="button" id="button1" ondrop="drop(event)" ondragover="allowDrop(event)"
-                onclick="clic(this.id)">Bouton 1</button>
+                onclick="clic(this.id)">button1</button>
             <button class="button" id="button2" ondrop="drop(event)" ondragover="allowDrop(event)"
-                onclick="clic(this.id)">Bouton 2</button>
+                onclick="clic(this.id)">button2</button>
             <button class="button" id="button3" ondrop="drop(event)" ondragover="allowDrop(event)"
-                onclick="clic(this.id)">Bouton 3</button>
+                onclick="clic(this.id)">button3</button>
             <button class="button" id="button4" ondrop="drop(event)" ondragover="allowDrop(event)"
-                onclick="clic(this.id)">Bouton 4</button>
+                onclick="clic(this.id)">button4</button>
             <button class="button" id="button5" ondrop="drop(event)" ondragover="allowDrop(event)"
-                onclick="clic(this.id)">Bouton 5</button>
+                onclick="clic(this.id)">button5</button>
             <button class="button" id="button6" ondrop="drop(event)" ondragover="allowDrop(event)"
-                onclick="clic(this.id)">Bouton 6</button>
+                onclick="clic(this.id)">button6</button>
         </div>
     </div>
     <div class="menu">
         <h2 class="titleMenu">Menu</h2>
         <p class="path">Chemin</p>
         <div class="containerC">
-            <ul>
+            <ul id="ul-containerC">
                 <li class="btn">
                     <button id="option1" draggable="true" ondragstart="drag(event)">brightness up</button>
                 </li>
@@ -49,10 +53,10 @@
                 <li class="btn2">
                     <button id="option6">Fermer</button>
                 </li>
-                <li class="btn">
+                <li class="btn" id="newButton">
                     <button id="option7" draggable="true" ondragstart="drag(event)">new buttons</button>
                 </li>
-                <li class="btnFile">
+                <li class="btnFile" id="btnFile">
                     <div class="containerFile">
                         <button id="option8" draggable="true" option="path" ondragstart="drag(event)">File</button>
                         <input type="text" placeholder="Chemin du fichier" id="input"></input>
@@ -113,6 +117,9 @@
 
         const app1ListDiv = document.getElementById("app1List");
         const nameList = document.getElementById("nameList");
+
+        var newButton = document.getElementById("newButton");
+                    var niveau2DejaAtteint = 0;
 
         function allowDrop(event) {
             event.preventDefault();
@@ -181,6 +188,7 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log('Réponse du serveur :', data);
+                    console.log('Level :', data.level[0]);
 
                     if (data.option[0] !== null) {
                         button1.textContent = data.buttonsValues[0] + ": " + data.option[0];
@@ -208,7 +216,7 @@
                         button5.textContent = data.buttonsValues[4];
                     }
 
-                    if (data.level == 0) {
+                    if (data.level[0] == 0) {
                         if (data.option[5] !== null) {
                             button6.textContent = data.buttonsValues[5] + ": " + data.option[5];
                         } else {
@@ -216,6 +224,16 @@
                         }
                     } else {
                         button6.textContent = "Retour"
+                    }
+                    
+                    
+                    if(data.level[0] == 2){
+                        newButton.parentNode.removeChild(newButton);
+                        niveau2DejaAtteint = 1; 
+                    }
+                    if (data.level[0] != 2 && niveau2DejaAtteint == 1 ){
+                        console.log(1)
+                        document.getElementById("btnFile").parentNode.insertBefore(newButton, document.getElementById("btnFile"))
                     }
                 })
                 .catch(error => {

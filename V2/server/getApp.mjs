@@ -10,7 +10,7 @@ export function bleco (level,buttonsPath){
   pythonProcess.stdout.on('data', (data) => {
   try {
     const jsonData = JSON.parse(data.toString());
-    console.log('Données reçues du script Python :', jsonData);
+    //console.log('Données reçues du script Python :', jsonData);
     // Faites ce que vous voulez avec les données JSON ici
     switchButton(jsonData,level,buttonsPath)
 

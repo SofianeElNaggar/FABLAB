@@ -16,6 +16,63 @@ body {
     text-align: center;
 }
 
+.actualiser{
+    margin-bottom: 5%;
+}
+/*
+.btn-actualiser{
+    font-size: 25px;
+    width: 17%;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #040fac;
+    color: white;
+    margin-bottom: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}*/
+
+.cont-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 70%;
+}
+
+.btn-actualiser{
+    font-size: 20px;
+    width: 20%;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #040fac;
+    color: white;
+    margin-bottom: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reset{
+    font-size: 20px;
+    width: 15%;
+    height: 40px;
+    border-radius: 50px;
+    margin-bottom: 5%;
+    background-color: rgb(228, 3, 3, 0.9);
+    color: white;
+    margin-bottom: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-actualiser:hover {
+    background-color: rgb(4, 15, 172, 0.80);
+}
+
+.btn-reset:hover {
+    background-color: rgb(228, 3, 3, 0.7);
+}
+
 .containerFile{
     display: hidden;
 }
@@ -77,6 +134,10 @@ body {
     margin-left: 30px;
 }
 
+.btn_valider {
+    background-color: rgba(0, 128, 0, 0.75);
+}
+
 #option6{
     display: none;
     background-color: rgba(255, 0, 0, 0.75);
@@ -93,7 +154,8 @@ body {
     text-align: center;
     margin: 0px;
     font-family: cursive;
-    font-size: large;
+    font-size: small;
+    font-style: italic;
 }
 
 #nameList{

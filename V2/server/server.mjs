@@ -7,6 +7,12 @@ import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
 import { arbre } from './Arbre/arbre.mjs';
 import { bleco } from './getApp.mjs';
+import kleur from 'kleur';
+import network from 'network';
+
+//------------ Couleur ------------
+const info = kleur.blue;
+//----------------------------------
 
 const app = express();
 const server = http.createServer(app);
@@ -28,7 +34,6 @@ bleco(level,buttonsPath)
 const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
-  //buttons.updateButtons(arbresJson);
   buttons.updateButtonV2(arbresJson);
 }
 
@@ -45,7 +50,12 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const receivedData = req.body;
-  console.log('Données JSON reçues du client :', receivedData);
+  //console.log('Données JSON reçues du client :', receivedData);
+
+  if(receivedData.button === "reset"){
+    level = [0];
+    buttonsPath = [];
+  }
 
   const info =  switchAction(receivedData, level, buttonsPath);
 
@@ -62,7 +72,7 @@ app.post('/', async (req, res) => {
   } else if (info === "back_level") {
     res.json({ action: 'back', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
   } else {
-    res.json({ action: 'ok' });
+    res.json({ action: 'ok', level: level, path: buttonsPath, buttonsValues, option: buttonsOptions });
   }
 });
 
@@ -72,8 +82,14 @@ server.on('connection', (connection) => {
   activeConnections.add(connection);
 });
 
-server.listen(port, () => {
-  console.log(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`);
+server.listen(port, '0.0.0.0', () => {
+  console.log(info(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`));
+  console.log();
+  network.get_active_interface((err, iface) => {
+    console.log();
+    console.log(info("Pour se connecter à l'application web via telephone, utilisez l'addresse suivante : http://" + iface.ip_address + ":" + port));
+    console.log();
+  });
 });
 
 // Gestion des déconnexions
