@@ -5,6 +5,7 @@ import { openFileOnWindows } from '../Fonctionallités/file.mjs';
 import { openWebPage } from '../Fonctionallités/page_web.mjs'
 import { captureAndSaveScreenshot } from '../Fonctionallités/screenshot.mjs'
 import { mediaNext, mediaPlayPause, mediaPrevious } from '../Fonctionallités/multimedia.mjs'
+import { raccourci } from '../Fonctionallités/raccourci.mjs';
 
 
 export function switchFunc(i, level, buttonsPath) {
@@ -50,6 +51,10 @@ export function switchFunc(i, level, buttonsPath) {
             break
         case "|<":
             mediaPrevious();
+            break
+        case "Raccourci":
+            var option = b[i].option;
+            raccourci(option);
             break
         default:
     }
