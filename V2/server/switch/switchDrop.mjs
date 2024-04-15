@@ -23,7 +23,7 @@ async function editContent(i, path, text, option) {
     switch (text) {
         case "new buttons":
             if(path.length<2){
-                buttons.modifTree(i, path, text, 1);
+                buttons.modifTree(i, path, text, 1, option);
             }
             break
         case "File":
