@@ -33,7 +33,6 @@ app.use(express.static(path.resolve(__dirname, '../client'), { 'extensions': ['h
 
 app.use(express.json());
 
-bleco(level,buttonsPath)
 const jsonData = fs.readFileSync('save.json', 'utf8');
 if (jsonData) {
   const arbresJson = JSON.parse(jsonData);
@@ -61,6 +60,7 @@ app.post('/', async (req, res) => {
   }
 
   const info =  switchAction(receivedData, level, buttonsPath);
+  bleco(level,buttonsPath)
 
   buttons.printLevel(buttonsPath);
 

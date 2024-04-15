@@ -9,8 +9,3 @@ export const openFileOnWindows = (filePath) => {
     } 
   });
 };
-
-
-//const videoPath = "C:/Users/User/Videos/Captures/Mixer de volume - Haut-parleurs (Realtek(R) Audio) 2021-04-23 17-54-16.mp4";
-//openFileOnWindows('C:/Users/User/eclipse/java-2022-09/eclipse/eclipse.exe');
-C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe

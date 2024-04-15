@@ -9,7 +9,9 @@ export const adjustVolume = async (delta) => {
     if (currentVolume == 2 && delta == -2){
             mutePCVolume();
     }
-    console.log(`Volume adjusted to: ${newVolume}`);
+    if (currentVolume === 0 && delta > 0) {
+      await unmutePCVolume();
+  }
   } catch (error) {
     console.error('Error adjusting volume:', error);
   }
@@ -26,6 +28,14 @@ function mutePCVolume() {
     });
 }
 
+async function unmutePCVolume() {
+  try {
+      await loudness.setMuted(false);
+      console.log('Le son a été réactivé avec succès.');
+  } catch (error) {
+      console.error('Impossible de réactiver le son:', error);
+  }
+}
 
 
 export function downVolume() {
