@@ -1,6 +1,7 @@
 import { buttons } from "../Arbre/button.mjs"
 
 export function switchDrop(data, level, buttonsPath, option) {
+    
     switch (data.button) {
         case "button1":
             return editContent(0, buttonsPath, data.text, option);

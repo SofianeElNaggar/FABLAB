@@ -1,10 +1,17 @@
-import kbmRobot  from 'kbm-robot';
+import robot  from 'kbm-robot';
 
-// Simuler un appui sur la touche "E"
-kbmRobot.pressKey('e');
 
-// Simuler un appui sur "Ctrl+E"
-kbmRobot.pressKey(['ctrl', 'e']);
-
-// Simuler un appui sur la touche "E", la maintenir enfoncée pendant 2 secondes, puis la relâcher
-kbmRobot.pressKey(['e'], 2000);
+export function raccourci(raccourci){
+    const keys = raccourci.split("+");
+    robot.startJar();
+    for(var r of keys){
+        robot.press(r)
+    }
+    robot.sleep(100);
+    for(var r of keys){
+        robot.release(r)
+    }
+    robot.sleep(100);
+    robot.go()
+        .then(robot.stopJar);
+}
