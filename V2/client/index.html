@@ -52,16 +52,19 @@
                 </li>
                 <li class="btn2">
                     <button id="option6">Fermer</button>
+                </li> 
+                <li class="btn" id="newButton">
+                    <button id="option7" draggable="true" ondragstart="drag(event)"
+                        onclick="openPopup(`newButton`);">new buttons</button>
                 </li>
+            <!--
                 <li class="btn" id="newButton">
                     <button id="option7" draggable="true" ondragstart="drag(event)">new buttons</button>
-                </li>
-                <li class="btnFile" id="btnFile">
-                    <div class="containerFile">
-                        <button id="option8" draggable="true" option="path" ondragstart="drag(event)">File</button>
-                        <input type="text" placeholder="Chemin du fichier" id="input"></input>
-                        <button id="option9" onclick="getValue();">Valider</button>
-                    </div>
+                </li> 
+            -->
+                <li class="btn">
+                    <button id="option8" draggable="true" ondragstart="drag(event)"
+                        onclick="openPopup(`File`);">File</button>
                 </li>
                 <li class="btn">
                     <button id="option10" draggable="true" ondragstart="drag(event)"
@@ -226,6 +229,28 @@
                 currentOptionStr = "option10"
                 msg = "Web"
                 currentOption = option10;
+            } else if (option === "File"){
+                content = `
+                <h3>Ouvrir un fichier</h3>
+                <p> Saisissez le chemin d'accès du fichier à ouvrir</p>
+                <input type="text" id="shortcut-input" placeholder="Chemin du fichier">
+                <button id="shortcut-submit">Valider</button>
+                `;
+
+                currentOptionStr = "option8"
+                msg = "File"
+                currentOption = option8;
+            } else if (option === "newButton"){
+                content = `
+                <h3>Nom</h3>
+                <p> Nom</p>
+                <input type="text" id="shortcut-input" placeholder="Nom">
+                <button id="shortcut-submit">Valider</button>
+                `;
+
+                currentOptionStr = "option7"
+                msg = "new buttons"
+                currentOption = option7;
             }
 
             popup.innerHTML = content;
