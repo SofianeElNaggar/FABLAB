@@ -1,32 +1,10 @@
-import keytar from 'keytar';
-import pkg from 'keytar';
-const { press } = pkg;
+import kbmRobot  from 'kbm-robot';
 
-export function raccourci(shortcut) {
-    const keys = shortcut.split('+');
-    const modifiers = keys.filter(key => key.match(/^(ctrl|control|shift|alt|meta)$/i));
-    const key = keys.find(key => !key.match(/^(ctrl|control|shift|alt|meta)$/i));
+// Simuler un appui sur la touche "E"
+kbmRobot.pressKey('e');
 
+// Simuler un appui sur "Ctrl+E"
+kbmRobot.pressKey(['ctrl', 'e']);
 
-
-    // Convertir les noms des modificateurs
-    const modifierMap = {
-        'ctrl': 'control',
-        'control': 'control',
-        'shift': 'shift',
-        'alt': 'alt',
-        'meta': 'meta',
-    };
-    const normalizedModifiers = modifiers.map(modifier => modifierMap[modifier]);
-
-    // Envoyer les pressions de touches
-    if (typeof press === 'function') {
-        press(key, normalizedModifiers)
-            .then(() => console.log(`Raccourci "${shortcut}" simulé avec succès !`))
-            .catch(error => console.error('Erreur lors de la simulation du raccourci:', error));
-    } else {
-        console.error('La fonction press n\'est pas disponible dans cette version de keytar');
-    }
-}
-
-
+// Simuler un appui sur la touche "E", la maintenir enfoncée pendant 2 secondes, puis la relâcher
+kbmRobot.pressKey(['e'], 2000);
