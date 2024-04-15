@@ -4,12 +4,14 @@
     "children": []
   },
   "button2": {
-    "value": "button2",
-    "children": []
+    "value": "File",
+    "children": [],
+    "option": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
   },
   "button3": {
-    "value": "button3",
-    "children": []
+    "value": "File",
+    "children": [],
+    "option": "C:\\Users\\User\\Videos\\Captures\\Paramètres 2022-09-15 10-42-21.mp4\""
   },
   "button4": {
     "value": "button4",
