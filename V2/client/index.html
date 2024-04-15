@@ -154,6 +154,10 @@
                 const optionContent = document.getElementById("option16").getAttribute("option")
                 const jsonData = { action: "drop", button: `${event.target.id}`, text: "Raccourci", option: optionContent };
                 send(jsonData);
+            } else if (text.startsWith("new buttons:")) {
+                const optionContent = document.getElementById("option7").getAttribute("option")
+                const jsonData = { action: "drop", button: `${event.target.id}`, text: "new buttons", option: optionContent };
+                send(jsonData);
             } else {
                 const jsonData = { action: "drop", button: `${event.target.id}`, text: text, option: `default` };
                 send(jsonData);
