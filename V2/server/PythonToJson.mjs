@@ -1,8 +1,11 @@
 import { spawn } from 'child_process';
 import { switchButton } from './switch/switchButton.mjs';
+import { buttons } from './Arbre/button.mjs';
 
 // Commande pour exécuter le script Python
 const pythonProcess = spawn('python', ['bleco.py']);
+
+
 
 // Événement pour capturer les données de sortie du script Python
 
@@ -12,6 +15,7 @@ export function bleco (level,buttonsPath){
     const jsonData = JSON.parse(data.toString());
     //console.log('Données reçues du script Python :', jsonData);
     switchButton(jsonData,level,buttonsPath)
+    buttons.printLevel(buttonsPath);
 
   } catch (error) {
     console.error('Erreur lors de l\'analyse des données JSON :', error);
