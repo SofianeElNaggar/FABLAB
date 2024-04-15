@@ -4,19 +4,41 @@
     "children": []
   },
   "button2": {
-    "value": "button2",
-    "children": []
+    "value": "new buttons",
+    "children": [
+      {
+        "value": "new buttons-1",
+        "children": []
+      },
+      {
+        "value": "brightness up",
+        "children": []
+      },
+      {
+        "value": "new buttons-3",
+        "children": []
+      },
+      {
+        "value": "new buttons-4",
+        "children": []
+      },
+      {
+        "value": "new buttons-5",
+        "children": []
+      }
+    ],
+    "option": "Sons"
   },
   "button3": {
     "value": "button3",
     "children": []
   },
   "button4": {
-    "value": "new buttons: Sons",
+    "value": "button4",
     "children": []
   },
   "button5": {
-    "value": "brightness down",
+    "value": "button5",
     "children": []
   },
   "button6": {
