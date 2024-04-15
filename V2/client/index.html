@@ -64,11 +64,8 @@
                     </div>
                 </li>
                 <li class="btn">
-                    <div class="containerFile">
-                        <button id="option10" draggable="true" option="path" ondragstart="drag(event)">Web</button>
-                        <input type="text" placeholder="Lien de la page web" id="input2"></input>
-                        <button id="option11" onclick="getValueWeb();">Valider</button>
-                    </div>
+                    <button id="option10" draggable="true" ondragstart="drag(event)"
+                        onclick="openPopup(`Web`);">Web</button>
                 </li>
                 <li class="btn">
                     <button id="option12" draggable="true" ondragstart="drag(event)">Screenshot</button>
@@ -84,7 +81,7 @@
                 </li>
                 <li class="btn">
                     <button id="option16" draggable="true" ondragstart="drag(event)"
-                        onclick="openShortcutPopup(`Raccourci`);">Raccourci</button>
+                        onclick="openPopup(`Raccourci`);">Raccourci</button>
                 </li>
             </ul>
 
@@ -186,7 +183,7 @@
             document.getElementById("input2").value = "";
         }
 
-        function openShortcutPopup() {
+        function openPopup(option) {
             // Créer un élément popup
             const popup = document.createElement("div");
             popup.id = "shortcut-popup";
@@ -199,13 +196,37 @@
             popup.style.padding = "20px";
             popup.style.borderRadius = "5px";
 
-            // Contenu de la popup
-            const content = `
-    <h3>Créer un raccourci clavier</h3>
-    <p>Entrez le raccourci clavier que vous souhaitez utiliser (ex: Ctrl+C):</p>
-    <input type="text" id="shortcut-input" placeholder="Raccourci clavier">
-    <button id="shortcut-submit">Valider</button>
-  `;
+            var content;
+            var currentOptionStr;
+            var currentOption;
+            var msg;
+
+            if (option === "Raccourci") {
+
+                // Contenu de la popup
+                content = `
+                <h3>Créer un raccourci clavier</h3>
+                <p>Entrez le raccourci clavier que vous souhaitez utiliser (ex: Ctrl+C):</p>
+                <input type="text" id="shortcut-input" placeholder="Raccourci clavier">
+                <button id="shortcut-submit">Valider</button>
+                `;
+
+                currentOptionStr = "option16";
+                msg = "Raccourci";
+                currentOption = option16;
+
+            } else if (option === "Web"){
+                content = `
+                <h3>Choisir une page web</h3>
+                <p>Entrez la page web que vous voulez ouvire</p>
+                <input type="text" id="shortcut-input" placeholder="Lien web">
+                <button id="shortcut-submit">Valider</button>
+                `;
+
+                currentOptionStr = "option10"
+                msg = "Web"
+                currentOption = option10;
+            }
 
             popup.innerHTML = content;
 
@@ -218,22 +239,22 @@
             }
 
             // Fonction pour modifier le bouton "Raccourci"
-            function updateShortcutButton(shortcutValue) {
-                const shortcutText = `Raccourci: ${shortcutValue}`;
-                const buttonText = document.getElementById("option16").textContent;
-                document.getElementById("option16").textContent = shortcutText;
+            function updateShortcutButton(optionValue) {
+                const shortcutText = `${msg}: ${optionValue}`;
+                const buttonText = document.getElementById(currentOptionStr).textContent;
+                document.getElementById(currentOptionStr).textContent = shortcutText;
                 // Modifier l'option du bouton
-                option16.setAttribute("option", shortcutValue);
+                currentOption.setAttribute("option", optionValue);
             }
 
             // Ecouter l'événement "click" sur le bouton de validation
             const submitButton = document.getElementById("shortcut-submit");
             submitButton.addEventListener("click", () => {
                 const shortcutInput = document.getElementById("shortcut-input");
-                const shortcutValue = shortcutInput.value;
+                const optionValue = shortcutInput.value;
 
                 // Enregistrer le raccourci clavier dans la variable "option"
-                const option = shortcutValue;
+                const option = optionValue;
 
                 // Envoyer les données au serveur (implémentez la logique de votre serveur)
 
@@ -241,7 +262,7 @@
                 closePopup();
 
                 // Mettre à jour le bouton "Raccourci" avec le raccourci saisi
-                updateShortcutButton(shortcutValue);
+                updateShortcutButton(optionValue);
             });
 
             // Ecouter l'événement "click" sur l'extérieur de la popup pour la fermer
