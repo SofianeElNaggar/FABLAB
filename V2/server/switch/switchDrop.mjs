@@ -1,6 +1,7 @@
 import { buttons } from "../Arbre/button.mjs"
 
 export function switchDrop(data, level, buttonsPath, option) {
+    
     switch (data.button) {
         case "button1":
             return editContent(0, buttonsPath, data.text, option);
@@ -23,13 +24,16 @@ async function editContent(i, path, text, option) {
     switch (text) {
         case "new buttons":
             if(path.length<2){
-                buttons.modifTree(i, path, text, 1);
+                buttons.modifTree(i, path, text, 1, option);
             }
             break
         case "File":
             buttons.modifTree(i, path, text, 0, option);
             break
         case "Web":
+            buttons.modifTree(i, path, text, 0, option);
+            break
+        case "Raccourci":
             buttons.modifTree(i, path, text, 0, option);
             break
         default:

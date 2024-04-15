@@ -59,12 +59,17 @@ function print() {
 
 function printLevel(path){
     var buttons = getChildren(path)
+    var nbOption = 0;
     for(var node of buttons){
+        nbOption ++;
         if(node.option){
             console.log(`${node.value} - Option: ${node.option}`)
         }else{
             console.log(node.value);
         }
+    }
+    if(nbOption === 5){
+        console.log("Return");
     }
     console.log("=============================");
 }

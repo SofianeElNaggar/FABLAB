@@ -21,6 +21,7 @@ const app = express();
 const server = http.createServer(app);
 const port = 3000;
 
+
 let level = [0];
 let buttonsPath = [];
 const activeConnections = new Set();
@@ -85,7 +86,7 @@ server.on('connection', (connection) => {
   activeConnections.add(connection);
 });
 
-server.listen(port, '0.0.0.0', () => {
+server.listen(port, () => {
   console.log(info(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`));
   console.log();
   network.get_active_interface((err, iface) => {
