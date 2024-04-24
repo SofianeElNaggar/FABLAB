@@ -39,7 +39,6 @@ export function switchFunc(i, level, buttonsPath) {
             openWebPage(option);
             break
         case "Screenshot":
-            console.log(formaterDate());
             var name = "screenshot_" + formaterDate() + ".png";
             captureAndSaveScreenshot(name);
             break
