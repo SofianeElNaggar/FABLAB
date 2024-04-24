@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import { switchAction } from './switch/switchAction.mjs';
 import { buttons } from './Arbre/button.mjs';
 import { arbre } from './Arbre/arbre.mjs';
-import { bleco } from './getApp.mjs';
+import { bleco } from './PythonToJson.mjs';
 import kleur from 'kleur';
 import network from 'network';
 
@@ -14,9 +14,13 @@ import network from 'network';
 const info = kleur.blue;
 //----------------------------------
 
+// Supprimer l'avertissement Iconv-lite
+process.stderr.write = () => {};
+
 const app = express();
 const server = http.createServer(app);
 const port = 3000;
+
 
 let level = [0];
 let buttonsPath = [];
@@ -59,7 +63,7 @@ app.post('/', async (req, res) => {
 
   const info =  switchAction(receivedData, level, buttonsPath);
 
-  //buttons.print();
+  buttons.printLevel(buttonsPath);
 
   var buttonsValues = buttons.getButtons(buttonsPath);
   var buttonsChildren = buttons.getChildren(buttonsPath);
@@ -82,7 +86,7 @@ server.on('connection', (connection) => {
   activeConnections.add(connection);
 });
 
-server.listen(port, '0.0.0.0', () => {
+server.listen(port, () => {
   console.log(info(`Serveur Node.js en cours d'exécution sur http://localhost:${port}`));
   console.log();
   network.get_active_interface((err, iface) => {

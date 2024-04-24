@@ -55,9 +55,9 @@ function isLeafFunc(arbre){
 function printTree(node, depth = 0) {
     const indent = '  '.repeat(depth);
     if(node.option){
-        console.log(`${indent}Node: ${node.value} - Option: ${node.option}`);
+        console.log(`${indent} ${node.value} - Option: ${node.option}`);
     }else{
-        console.log(`${indent}Node: ${node.value}`);
+        console.log(`${indent} ${node.value}`);
     }
 
     if (node.isLeaf()) {

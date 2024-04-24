@@ -47,4 +47,7 @@ async def executer_client_ble():
             print("Interruption du programme, j'ai arrêté d'écouter.", file=sys.stderr)
 
 if __name__ == "__main__":
-    asyncio.run(executer_client_ble())
+    try:
+        asyncio.run(executer_client_ble())
+    except Exception as e:
+        pass
