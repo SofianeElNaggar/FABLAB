@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const receivedData = req.body;
-  //console.log('Données JSON reçues du client :', receivedData);
+  console.log('Données JSON reçues du client :', receivedData);
 
   if(receivedData.button === "reset"){
     level = [0];
