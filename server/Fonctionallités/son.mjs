@@ -9,9 +9,11 @@ export const adjustVolume = async (delta) => {
     if (currentVolume == 2 && delta == -2){
             mutePCVolume();
     }
-    console.log(`Volume adjusted to: ${newVolume}`);
+    if (currentVolume == 0 && delta == 2){
+}
+    //console.log(`Volume adjusted to: ${newVolume}`);
   } catch (error) {
-    console.error('Error adjusting volume:', error);
+   // console.error('Error adjusting volume:', error);
   }
 };
 
@@ -19,12 +21,13 @@ export const adjustVolume = async (delta) => {
 function mutePCVolume() {
     loudness.setMuted(true, function(err) {
         if (err) {
-            console.error('Impossible de mettre en sourdine le son:', err);
+          //  console.error('Impossible de mettre en sourdine le son:', err);
         } else {
-            console.log('Le son a été mis en sourdine avec succès.');
+            //console.log('Le son a été mis en sourdine avec succès.');
         }
     });
 }
+
 
 
 
